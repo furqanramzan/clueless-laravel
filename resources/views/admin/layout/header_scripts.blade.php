@@ -6,4 +6,5 @@
     <link rel="stylesheet" href="/assets/css/admin.base.css">
     <link rel="stylesheet" href="/assets/css/admin.css">
     <link rel="shortcut icon" href="/assets/images/favicon.png" />
+    @stack('header')
 </head>

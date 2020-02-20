@@ -29,12 +29,12 @@
                                 <td>{{ $admin->email }}</td>
                                 <td>{{ $admin->created_at->format('m-d-Y H:i') }}</td>
                                 <td>
-                                    <a href="{{ route('admin.admin.edit', $admin->id) }}">
+                                    <a href="{{ route("$route.edit", $admin->id) }}">
                                         <button type="button" class="btn btn-outline-warning btn-sm btn-icon action-btns">
                                             <i class="mdi mdi-pencil"></i>
                                         </button>
                                     </a>
-                                    <form action="{{ route('admin.admin.destroy', $admin->id) }}" method="POST" class="d-inline-block">
+                                    <form action="{{ route("$route.destroy", $admin->id) }}" method="POST" class="d-inline-block">
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" class="btn btn-outline-danger btn-sm btn-icon action-btns">

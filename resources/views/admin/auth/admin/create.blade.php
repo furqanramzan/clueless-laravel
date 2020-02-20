@@ -12,25 +12,25 @@
                     <form action="{{ route("$route.store") }}" method="POST" class="forms-sample">
                         @csrf
                         <div class="form-group row">
-                            <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Name</label>
+                            <label for="name" class="col-sm-3 col-form-label">Name</label>
                             <div class="col-sm-9">
                                 <input type="text" name="name" class="form-control" id="name" placeholder="Name" value="{{ old('name') }}">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Email</label>
+                            <label for="email" class="col-sm-3 col-form-label">Email</label>
                             <div class="col-sm-9">
                                 <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="{{ old('email') }}">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Password</label>
+                            <label for="password" class="col-sm-3 col-form-label">Password</label>
                             <div class="col-sm-9">
                                 <input type="password" name="password" class="form-control" id="password" placeholder="Password">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label">Re Password</label>
+                            <label for="password_confirmation" class="col-sm-3 col-form-label">Re Password</label>
                             <div class="col-sm-9">
                                 <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="Password">
                             </div>

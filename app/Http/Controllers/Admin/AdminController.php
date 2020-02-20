@@ -18,9 +18,9 @@ class AdminController extends Controller
         'singular' => 'admin'
     ];
 
-    public function __construct(Admin $admin, Hasher $hash)
+    public function __construct(Admin $model, Hasher $hash)
     {
-        $this->model = $admin;
+        $this->model = $model;
         $this->hash = $hash;
     }
     /**
