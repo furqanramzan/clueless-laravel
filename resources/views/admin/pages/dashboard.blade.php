@@ -1,4 +1,5 @@
 @extends('admin.layout.app')
+@section('dashboard', 'active')
 
 @section('content')
 <div class="content-wrapper">
