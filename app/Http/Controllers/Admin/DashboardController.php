@@ -9,6 +9,11 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('admin.pages.dashboard');
+        return view('admin.auth.dashboard');
+    }
+
+    public function redirect()
+    {
+        return redirect()->route('admin.dashboard');
     }
 }

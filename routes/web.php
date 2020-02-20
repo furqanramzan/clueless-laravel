@@ -16,7 +16,11 @@ Route::get('/', function () {
 });
 
 Route::prefix('admin')->namespace('Admin')->name('admin.')->group(function(){
-    Route::redirect('/', '/admin/dashboard');
-    Route::get('dashboard', 'DashboardController@index')->name('dashboard');
-    Route::resource('admin', 'AdminController')->except('show');
+    Auth::routes(['register' => false, 'reset' => false]);
+    Route::get('/', 'DashboardController@redirect');
+    
+    Route::middleware('auth')->group(function(){
+        Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+        Route::resource('admin', 'AdminController')->except('show');
+    });
 });

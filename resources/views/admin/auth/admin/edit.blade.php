@@ -1,35 +1,14 @@
-@extends('admin.layout.app')
+@extends('admin.layout.auth')
 @section('admin', 'active')
 
 @section('content')
 <div class="content-wrapper">
-    <div class="page-header">
-        <h3 class="page-title">
-            <span class="page-title-icon bg-gradient-primary text-white mr-2">
-                <i class="mdi mdi-home"></i>
-            </span> Update {{ $title }}
-        </h3>
-        <h3 class="page-title">
-            <a href="{{ route("$route.index") }}">
-                <span class="page-title-icon bg-gradient-info text-white mr-2">
-                    <i class="mdi mdi-keyboard-backspace"></i>
-                </span>
-            </a>
-        </h3>
-    </div>
+    @include('admin.layout.page_header', ['pageRoute' => "$route.index", 'pageIcon' => 'keyboard-backspace', 'pageTitle' => "Update $title"])
     <div class="row">
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
+                    @include('admin.layout.errors')
                     <form action="{{ route("$route.update", $admin->id) }}" method="POST" class="forms-sample">
                         @method('PUT')
                         @csrf

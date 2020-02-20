@@ -2,23 +2,26 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Admin;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Hashing\Hasher;
 
 class AdminController extends Controller
 {
     private $model;
-    private $view = "admin.pages.admin";
+    private $hash;
+    private $view = "admin.auth.admin";
     private $route = "admin.admin";
     private $titles = [
         'plural' => 'admins',
         'singular' => 'admin'
     ];
 
-    public function __construct(Admin $admin)
+    public function __construct(Admin $admin, Hasher $hash)
     {
         $this->model = $admin;
+        $this->hash = $hash;
     }
     /**
      * Display a listing of the resource.
@@ -60,9 +63,10 @@ class AdminController extends Controller
             "password" => "required|min:8|max:190|confirmed",
         ]);
 
-        $title = $this->titles['singular'];
-
+        $validated['password'] = $this->hash->make($validated['password']);
         $this->model->create($validated);
+
+        $title = $this->titles['singular'];
 
         return redirect()->route($this->route . '.index')->with([
             'type' => 'success',
@@ -101,12 +105,15 @@ class AdminController extends Controller
             "email" => "required|max:190|unique:admins,email," . $id,
             "password" => "nullable|min:8|max:190|confirmed|exclude_if:password," . null,
         ]);
-        
+
+        if (isset($validated['password'])) {
+            $validated['password'] = $this->hash->make($validated['password']);
+        }
         $admin = $this->model->findorFail($id);
         $admin->update($validated);
 
         $title = $this->titles['singular'];
-        
+
         return redirect()->route($this->route . '.index')->with([
             'type' => 'success',
             'title' => ucfirst($title) . " Updated!",
