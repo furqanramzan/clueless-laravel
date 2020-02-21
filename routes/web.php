@@ -20,7 +20,7 @@ Route::prefix('admin')->namespace('Admin')->name('admin.')->group(function(){
     Route::get('/', 'DashboardController@redirect');
     
     Route::middleware('auth')->group(function(){
-        Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+        // Route::get('dashboard', 'DashboardController@index')->name('dashboard');
         Route::resource('admin', 'AdminController')->except('show');
         Route::post('review/{id}/publish', 'ReviewController@publish')->name('review.publish');
         Route::resource('review', 'ReviewController');
