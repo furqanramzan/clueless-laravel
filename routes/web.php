@@ -24,5 +24,7 @@ Route::prefix('admin')->namespace('Admin')->name('admin.')->group(function(){
         Route::resource('admin', 'AdminController')->except('show');
         Route::post('review/{id}/publish', 'ReviewController@publish')->name('review.publish');
         Route::resource('review', 'ReviewController');
+        Route::resource('toplist', 'TopListController')->except('show');
+        Route::resource('toplistreview', 'TopListReviewController')->except('show');
     });
 });

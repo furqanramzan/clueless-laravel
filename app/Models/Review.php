@@ -23,4 +23,18 @@ class Review extends Model
     protected $casts = [
         'published_date' => 'datetime',
     ];
+
+    public function topListReview()
+    {
+        return $this->hasMany(TopListReview::class);
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleted(function($obj){
+            $obj->topListReview()->delete();
+        });
+    }
 }

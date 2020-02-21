@@ -112,10 +112,7 @@ class ReviewController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request->all());
         $validated = $this->validateRequest($request);
-
-
         $validated = array_merge($validated, $request->validate([
             "image" => "nullable|image|exclude_if:image," . null
         ]));
