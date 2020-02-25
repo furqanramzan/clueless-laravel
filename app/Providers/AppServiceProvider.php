@@ -23,6 +23,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        \View::composer(['guest.layouts.header'], function($view){
+            $toplists = \App\Models\TopList::orderBy('order', 'desc')->select('id', 'name')->get();
+            $view->with(['toplists' => $toplists]);
+        });
     }
 }

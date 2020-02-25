@@ -12,7 +12,7 @@ class TopList extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'title', 'introduction'
+        'name', 'title', 'introduction', 'order'
     ];
 
     public function topListReview()

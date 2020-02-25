@@ -33,7 +33,7 @@ class AdminController extends Controller
         $title = ucfirst($this->titles['plural']);
         $route = $this->route;
 
-        $admins = $this->model->select('id', 'name', 'email', 'created_at')->orderBy('created_at', 'desc')->get();
+        $admins = $this->model->select('id', 'name', 'email', 'created_at')->latest()->get();
         return view($this->view . '.index', compact('admins', 'title', 'route'));
     }
 

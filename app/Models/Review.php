@@ -12,7 +12,7 @@ class Review extends Model
      * @var array
      */
     protected $fillable = [
-        'company_name', 'company_url', 'room_name', 'room_overview', 'country', 'region', 'puzzles_gameplay', 'design_and_theming', 'games_mastery', 'innovation_tech', 'overall', 'difficulty', 'time', 'length', 'accessibility', 'value', 'ideal_for', 'good_for_kids', 'good_for_enthusiasts', 'good_for_design', 'good_for_technology', 'image', 'visits', 'published', 'published_date'
+        'company_name', 'company_url', 'room_name', 'room_overview', 'body', 'country', 'region', 'puzzles_gameplay', 'design_and_theming', 'games_mastery', 'innovation_tech', 'overall', 'difficulty', 'time', 'length', 'accessibility', 'value', 'ideal_for', 'good_for_kids', 'good_for_enthusiasts', 'good_for_design', 'good_for_technology', 'image', 'visits', 'published', 'published_date'
     ];
 
     /**
@@ -29,12 +29,18 @@ class Review extends Model
         return $this->hasMany(TopListReview::class);
     }
 
+    public function reviewComments()
+    {
+        return $this->hasMany(ReviewComment::class);
+    }
+
     public static function boot()
     {
         parent::boot();
 
         static::deleted(function($obj){
             $obj->topListReview()->delete();
+            $obj->reviewComments()->delete();
         });
     }
 }

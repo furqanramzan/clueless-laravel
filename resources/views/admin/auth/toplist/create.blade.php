@@ -32,6 +32,13 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="order" class="col-sm-3 col-form-label">Order</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="order" class="form-control" id="order" placeholder="Order" value="{{ old('order') }}">
+                            </div>
+                        </div>
+
                         <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
                         <a href="{{ route("$route.index") }}">
                             <button type="button" class="btn btn-light">Cancel</button>

@@ -186,6 +186,7 @@ class ReviewController extends Controller
             "company_url" => "required",
             "room_name" => "required|max:190",
             "room_overview" => "required",
+            "body" => "required",
             "country" => "required|max:190",
             "region" => "required|max:190",
             "puzzles_gameplay" => "required|numeric|max:10",

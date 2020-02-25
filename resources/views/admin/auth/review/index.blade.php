@@ -5,7 +5,8 @@
 <div class="content-wrapper">
     @if (session('message'))
     <div class="row" id="proBanner">
-        @include('admin.layout.notification', ['notificationType' => session('type') ?? 'success', 'notificationTitle' => session('title'), 'notificationMessage' => session('message')])
+        @include('admin.layout.notification', ['notificationType' => session('type') ?? 'success', 'notificationTitle'
+        => session('title'), 'notificationMessage' => session('message')])
     </div>
     @endif
     @include('admin.layout.page_header', ['pageRoute' => "$route.create", 'pageIcon' => 'plus', 'pageTitle' => $title])
@@ -35,7 +36,8 @@
                                 <td>{{ $item->region }}</td>
                                 <td>{{ $item->visits }}</td>
                                 <td>
-                                    <i class="mdi {{ $item->published ? 'text-success mdi-check' : 'text-danger mdi-close' }}"></i>
+                                    <i
+                                        class="mdi {{ $item->published ? 'text-success mdi-check' : 'text-danger mdi-close' }}"></i>
                                 </td>
                                 <td>{{ $item->created_at->format('m-d-Y H:i') }}</td>
                                 <td>
@@ -44,21 +46,32 @@
                                             <i class="mdi mdi-eye"></i>
                                         </button>
                                     </a>
-                                    <form action="{{ route("$route.publish", $item->id) }}" method="POST" class="d-inline-block">
+                                    <form action="{{ route("$route.publish", $item->id) }}" method="POST"
+                                        class="d-inline-block">
                                         @csrf
-                                        <button type="submit" class="btn btn-outline-success btn-sm btn-icon action-btns">
+                                        <button type="submit"
+                                            class="btn btn-outline-success btn-sm btn-icon action-btns">
                                             <i class="mdi mdi-book-open-page-variant"></i>
                                         </button>
                                     </form>
+                                    <a href="{{ route("admin.reviewcomment.show", $item->id) }}">
+                                        <button type="button"
+                                            class="btn btn-outline-secondary btn-sm btn-icon action-btns">
+                                            <i class="mdi mdi-comment"></i>
+                                        </button>
+                                    </a>
                                     <a href="{{ route("$route.edit", $item->id) }}">
-                                        <button type="button" class="btn btn-outline-warning btn-sm btn-icon action-btns">
+                                        <button type="button"
+                                            class="btn btn-outline-warning btn-sm btn-icon action-btns">
                                             <i class="mdi mdi-pencil"></i>
                                         </button>
                                     </a>
-                                    <form action="{{ route("$route.destroy", $item->id) }}" method="POST" class="d-inline-block">
+                                    <form action="{{ route("$route.destroy", $item->id) }}" method="POST"
+                                        class="d-inline-block">
                                         @method('DELETE')
                                         @csrf
-                                        <button type="submit" class="btn btn-outline-danger btn-sm btn-icon action-btns">
+                                        <button type="submit"
+                                            class="btn btn-outline-danger btn-sm btn-icon action-btns">
                                             <i class="mdi mdi-delete"></i>
                                         </button>
                                     </form>

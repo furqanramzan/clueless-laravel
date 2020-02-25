@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTopListsTable extends Migration
+class CreateReviewCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateTopListsTable extends Migration
      */
     public function up()
     {
-        Schema::create('top_lists', function (Blueprint $table) {
+        Schema::create('review_comments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('title');
-            $table->longText('introduction');
-            $table->integer('order');
+            $table->bigInteger('review_id');
+            $table->longText('body');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateTopListsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('top_lists');
+        Schema::dropIfExists('review_comments');
     }
 }

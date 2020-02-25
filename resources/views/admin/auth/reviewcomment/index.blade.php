@@ -1,5 +1,5 @@
 @extends('admin.layout.auth')
-@section('toplist', 'active')
+@section('review', 'active')
 
 @section('content')
 <div class="content-wrapper">
@@ -8,7 +8,7 @@
         @include('admin.layout.notification', ['notificationType' => session('type') ?? 'success', 'notificationTitle' => session('title'), 'notificationMessage' => session('message')])
     </div>
     @endif
-    @include('admin.layout.page_header', ['pageRoute' => "$route.create", 'pageIcon' => 'plus', 'pageTitle' => $title])
+    @include('admin.layout.page_header', ['pageTitle' => $title])
     <div class="row">
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
@@ -16,10 +16,7 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Title</th>
-                                <th>Introduction</th>
-                                <th>Order</th>
+                                <th>Body</th>
                                 <th>Created at</th>
                                 <th>Action</th>
                             </tr>
@@ -27,10 +24,7 @@
                         <tbody>
                             @foreach ($items as $item)
                             <tr>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $string->limit($item->title, 30) }}</td>
-                                <td>{{ $string->limit($item->introduction, 30) }}</td>
-                                <td>{{ $item->order }}</td>
+                                <td>{{ $string->limit($item->body, 30) }}</td>
                                 <td>{{ $item->created_at->format('m-d-Y H:i') }}</td>
                                 <td>
                                     <a href="{{ route("$route.edit", $item->id) }}">

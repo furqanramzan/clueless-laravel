@@ -10,7 +10,7 @@
 <script src="/assets/js/file-upload.js"></script>
 <script>
     $(document).ready(function() {
-        $('#room_overview').summernote({
+        $('#body').summernote({
             height: 100,
             toolbar: [
                 ['style', ['style']],
@@ -61,8 +61,16 @@
                         <div class="form-group row">
                             <label for="room_overview" class="col-sm-3 col-form-label">Room Overview</label>
                             <div class="col-sm-9">
-                                <textarea id="room_overview" name="room_overview">
-                                    {{ old('room_overview') ?? $item->room_overview }}
+                                <input type="text" name="room_overview" class="form-control" id="room_overview"
+                                    placeholder="Room Overview" value="{{ old('room_overview') ?? $item->room_overview }}">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="body" class="col-sm-3 col-form-label">Body</label>
+                            <div class="col-sm-9">
+                                <textarea id="body" name="body">
+                                    {{ old('body') ?? $item->body }}
                                 </textarea>
                             </div>
                         </div>

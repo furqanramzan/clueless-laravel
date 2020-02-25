@@ -19,6 +19,7 @@ class CreateReviewsTable extends Migration
             $table->longText('company_url');
             $table->string('room_name');
             $table->longText('room_overview');
+            $table->longText('body');
             $table->string('country');
             $table->string('region');
             $table->integer('puzzles_gameplay');

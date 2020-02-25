@@ -2,73 +2,46 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\TopList;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\ReviewComment;
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Filesystem\Factory as Storage;
 
-class TopListController extends Controller
+class ReviewCommentController extends Controller
 {
     private $model;
     private $string;
-    private $view = "admin.auth.toplist";
-    private $route = "admin.toplist";
+    private $storage;
+    private $view = "admin.auth.reviewcomment";
+    private $route = "admin.reviewcomment";
     private $titles = [
-        'plural' => 'top Lists',
-        'singular' => 'top List'
+        'plural' => 'review Comments',
+        'singular' => 'review Comment'
     ];
 
-    public function __construct(TopList $model, Str $string)
+    public function __construct(ReviewComment $model, Str $string)
     {
         $this->model = $model;
         $this->string = $string;
     }
+
     /**
-     * Display a listing of the resource.
+     * Display the specified resource.
      *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function show($id)
     {
+        $item = $this->model->review()->getModel()->with('reviewComments')->findorFail($id);
+        $items = $item->reviewComments;
+
         $title = ucfirst($this->titles['plural']);
         $route = $this->route;
         $string = $this->string;
 
-        $items = $this->model->orderBy('created_at', 'desc')->get();
-        return view($this->view . '.index', compact('items', 'string', 'title', 'route'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $title = ucfirst($this->titles['singular']);
-        $route = $this->route;
-        return view($this->view . '.create', compact('title', 'route'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $validated = $this->validateRequest($request);
-
-        $this->model->create($validated);
-
-        $title = $this->titles['singular'];
-
-        return redirect()->route($this->route . '.index')->with([
-            'type' => 'success',
-            'title' => ucfirst($title) . " Created!",
-            'message' => "The $title has been created successfully"
-        ]);
+        return view($this->view . '.index', compact('items', 'title', 'route', 'string'));
     }
 
     /**
@@ -104,7 +77,7 @@ class TopListController extends Controller
 
         $title = $this->titles['singular'];
 
-        return redirect()->route($this->route . '.index')->with([
+        return redirect()->route($this->route . '.show', $item->review_id)->with([
             'type' => 'success',
             'title' => ucfirst($title) . " Updated!",
             'message' => "The $title has been updated successfully"
@@ -119,25 +92,45 @@ class TopListController extends Controller
      */
     public function destroy($id)
     {
-        $item = $this->model->select('id')->findorFail($id);
+        $item = $this->model->select('id', 'review_id')->findorFail($id);
         $item->delete();
 
         $title = $this->titles['singular'];
 
-        return redirect()->route($this->route . '.index')->with([
+        return redirect()->route($this->route . '.show', $item->review_id)->with([
             'type' => 'success',
             'title' => ucfirst($title) . " Deleted!",
             'message' => "The $title has been deleted successfully"
         ]);
     }
 
+    /**
+     * Publish the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function publish($id)
+    {
+        $item = $this->model->select('id', 'published', 'published_date')->findorFail($id);
+        $item->update([
+            'published' => 1,
+            'published_date' => now(),
+        ]);
+
+        $title = $this->titles['singular'];
+
+        return redirect()->route($this->route . '.index')->with([
+            'type' => 'success',
+            'title' => ucfirst($title) . " Published!",
+            'message' => "The $title has been published successfully"
+        ]);
+    }
+
     public function validateRequest($request)
     {
         return $request->validate([
-            "name" => "required|max:190",
-            "title" => "required|max:190",
-            "introduction" => "required",
-            "order" => "required|numeric",
+            "body" => "required",
         ]);
     }
 }
