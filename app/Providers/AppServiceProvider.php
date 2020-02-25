@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Schema::defaultStringLength(191);
+        
         \View::composer(['guest.layouts.header'], function($view){
             $toplists = \App\Models\TopList::orderBy('order', 'desc')->select('id', 'name')->get();
             $view->with(['toplists' => $toplists]);

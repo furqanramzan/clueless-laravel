@@ -22,12 +22,12 @@ class CreateReviewsTable extends Migration
             $table->longText('body');
             $table->string('country');
             $table->string('region');
-            $table->integer('puzzles_gameplay');
-            $table->integer('design_and_theming');
-            $table->integer('games_mastery');
-            $table->integer('innovation_tech');
-            $table->integer('overall');
-            $table->integer('difficulty');
+            $table->string('puzzles_gameplay');
+            $table->string('design_and_theming');
+            $table->string('games_mastery');
+            $table->string('innovation_tech');
+            $table->string('overall');
+            $table->string('difficulty');
             $table->string('time');
             $table->string('length');
             $table->string('accessibility');

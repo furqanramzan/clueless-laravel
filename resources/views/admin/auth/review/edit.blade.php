@@ -31,7 +31,8 @@
             <div class="card">
                 <div class="card-body">
                     @include('admin.layout.errors')
-                    <form action="{{ route("$route.update", $item->id) }}" method="POST" class="forms-sample" enctype="multipart/form-data">
+                    <form action="{{ route("$route.update", $item->id) }}" method="POST" class="forms-sample"
+                        enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         <div class="form-group row">
@@ -62,7 +63,8 @@
                             <label for="room_overview" class="col-sm-3 col-form-label">Room Overview</label>
                             <div class="col-sm-9">
                                 <input type="text" name="room_overview" class="form-control" id="room_overview"
-                                    placeholder="Room Overview" value="{{ old('room_overview') ?? $item->room_overview }}">
+                                    placeholder="Room Overview"
+                                    value="{{ old('room_overview') ?? $item->room_overview }}">
                             </div>
                         </div>
 
@@ -92,86 +94,51 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="puzzles_gameplay" class="col-sm-3 col-form-label">Puzzles and Gameplay
-                                Score</label>
+                            <label for="puzzles_gameplay" class="col-sm-3 col-form-label">Puzzles and Gameplay</label>
                             <div class="col-sm-9">
-                                <select name="puzzles_gameplay" class="form-control" id="puzzles_gameplay">
-                                    <option value="">Select Puzzles and Gameplay Score</option>
-                                    @for ($i = 1; $i <= 10; $i++) <option value="{{ $i }}"
-                                        @if($i==old('puzzles_gameplay') || $i==$item->puzzles_gameplay) selected
-                                        @endif>{{ $i }}</option>
-                                        @endfor
-                                </select>
+                                <input type="text" name="puzzles_gameplay" class="form-control" id="puzzles_gameplay"
+                                    placeholder="Puzzles and Gameplay" value="{{ old('puzzles_gameplay') ?? $item->puzzles_gameplay }}">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="design_and_theming" class="col-sm-3 col-form-label">Design andTheming
-                                Score</label>
+                            <label for="design_and_theming" class="col-sm-3 col-form-label">Design and Theming</label>
                             <div class="col-sm-9">
-                                <select name="design_and_theming" class="form-control" id="design_and_theming">
-                                    <option value="">Select Design andTheming Score</option>
-                                    @for ($i = 1; $i <= 10; $i++) <option value="{{ $i }}"
-                                        @if($i==old('design_and_theming') || $i==$item->design_and_theming) selected
-                                        @endif>{{ $i }}</option>
-                                        @endfor
-                                </select>
+                                <input type="text" name="design_and_theming" class="form-control"
+                                    id="design_and_theming" placeholder="Design and Theming"
+                                    value="{{ old('design_and_theming') ?? $item->design_and_theming }}">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="games_mastery" class="col-sm-3 col-form-label">Games Mastery
-                                Score</label>
+                            <label for="games_mastery" class="col-sm-3 col-form-label">Games Mastery</label>
                             <div class="col-sm-9">
-                                <select name="games_mastery" class="form-control" id="games_mastery">
-                                    <option value="">Select Games Mastery Score</option>
-                                    @for ($i = 1; $i <= 10; $i++) <option value="{{ $i }}" @if($i==old('games_mastery')
-                                        || $i==$item->games_mastery)
-                                        selected @endif>{{ $i }}</option>
-                                        @endfor
-                                </select>
+                                <input type="text" name="games_mastery" class="form-control" id="games_mastery"
+                                    placeholder="Games Mastery" value="{{ old('games_mastery') ?? $item->games_mastery }}">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="innovation_tech" class="col-sm-3 col-form-label">Innovation Tech
-                                Score</label>
+                            <label for="innovation_tech" class="col-sm-3 col-form-label">Innovation Tech</label>
                             <div class="col-sm-9">
-                                <select name="innovation_tech" class="form-control" id="innovation_tech">
-                                    <option value="">Select Innovation Tech Score</option>
-                                    @for ($i = 1; $i <= 10; $i++) <option value="{{ $i }}"
-                                        @if($i==old('innovation_tech') || $i==$item->innovation_tech) selected
-                                        @endif>{{ $i }}</option>
-                                        @endfor
-                                </select>
+                                <input type="text" name="innovation_tech" class="form-control" id="innovation_tech"
+                                    placeholder="Innovation Tech" value="{{ old('innovation_tech') ?? $item->innovation_tech }}">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="overall" class="col-sm-3 col-form-label">Overall
-                                Score</label>
+                            <label for="overall" class="col-sm-3 col-form-label">Overall Score</label>
                             <div class="col-sm-9">
-                                <select name="overall" class="form-control" id="overall">
-                                    <option value="">Select Overall Score</option>
-                                    @for ($i = 1; $i <= 5; $i++) <option value="{{ $i }}" @if($i==old('overall') ||
-                                        $i==$item->overall)
-                                        selected @endif>{{ $i }}</option>
-                                        @endfor
-                                </select>
+                                <input type="text" name="overall" class="form-control" id="overall"
+                                    placeholder="Overall Score" value="{{ old('overall') ?? $item->overall }}">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="difficulty" class="col-sm-3 col-form-label">Difficulty
-                                Score</label>
+                            <label for="difficulty" class="col-sm-3 col-form-label">Difficulty Score</label>
                             <div class="col-sm-9">
-                                <select name="difficulty" class="form-control" id="difficulty">
-                                    <option value="">Select Difficulty Score</option>
-                                    @for ($i = 1; $i <= 10; $i++) <option value="{{ $i }}" @if($i==old('difficulty') ||
-                                        $i==$item->difficulty)
-                                        selected @endif>{{ $i }}</option>
-                                        @endfor
-                                </select>
+                                <input type="text" name="difficulty" class="form-control" id="difficulty"
+                                    placeholder="Difficulty Score" value="{{ old('difficulty') ?? $item->difficulty }}">
                             </div>
                         </div>
 
