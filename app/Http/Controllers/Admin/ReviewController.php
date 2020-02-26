@@ -83,7 +83,11 @@ class ReviewController extends Controller
      */
     public function show($id)
     {
-        //
+        $review = $this->model->with(['reviewComments' => function($query){
+            $query->select('review_id', 'body', 'created_at')->latest();
+        }])->findorFail($id);
+        $reviews = $this->model->orderBy('visits', 'desc')->limit(5)->get();
+        return view('guest.review', compact('review', 'reviews'));
     }
 
     /**

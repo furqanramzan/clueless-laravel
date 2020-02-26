@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="imagepage">
-    <img src="/assets/images/1.jpg" class="imagedetail" width="100%" height="400px" alt="">
+    <img src="{{ asset($review->image) }}" class="imagedetail" width="100%" height="400px" alt="">
 </div>
 <!-- image detail page  -->
 <div class="container mt-3">

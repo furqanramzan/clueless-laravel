@@ -43,4 +43,9 @@ class Review extends Model
             $obj->reviewComments()->delete();
         });
     }
+
+    public function scopePublished($query)
+    {
+        return $query->where('published', 1);
+    }
 }

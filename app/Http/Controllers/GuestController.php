@@ -24,7 +24,7 @@ class GuestController extends Controller
     public function index()
     {
         $data = [];
-        $data['reviews'] = $this->review->latest()->limit(12)->get();
+        $data['reviews'] = $this->review->published()->latest()->limit(12)->get();
         return view('guest.index', compact('data'));
     }
 
@@ -45,7 +45,7 @@ class GuestController extends Controller
         ];
         $params = $request->only('keyword', 'country', 'region');
         $data['params'] = array_merge($data['params'], $params);
-        $reviews = $this->review->latest()->limit(12);
+        $reviews = $this->review->published()->latest()->limit(12);
         if($data['params']['keyword']) {
             $reviews = $reviews->orWhere('company_name', 'like', "%{$data['params']['keyword']}%")->orWhere('room_name', 'like', "%{$data['params']['keyword']}%")->orWhere('room_overview', 'like', "%{$data['params']['keyword']}%")->orWhere('body', 'like', "%{$data['params']['keyword']}%");
         }
@@ -57,19 +57,19 @@ class GuestController extends Controller
         }
         $reviews = $reviews->get();
         $data['reviews'] = $reviews;
-        $data['countries'] = $this->review->select('country')->orderBy('country')->distinct('country')->get();
-        $data['regions'] = $this->review->select('region')->orderBy('region')->distinct('region')->get();
+        $data['countries'] = $this->review->published()->select('country')->orderBy('country')->distinct('country')->get();
+        $data['regions'] = $this->review->published()->select('region')->orderBy('region')->distinct('region')->get();
         return view('guest.find', compact('data'));
     }
 
     public function review($id)
     {
-        $review = $this->review->with(['reviewComments' => function($query){
+        $review = $this->review->published()->with(['reviewComments' => function($query){
             $query->select('review_id', 'body', 'created_at')->latest();
         }])->findorFail($id);
         $review->visits++;
         $review->save();
-        $reviews = $this->review->orderBy('visits', 'desc')->limit(4)->get();
+        $reviews = $this->review->published()->orderBy('visits', 'desc')->limit(5)->get();
         return view('guest.review', compact('review', 'reviews'));
     }
 
@@ -83,7 +83,7 @@ class GuestController extends Controller
         $validated = $request->validate([
             'body' => 'required'
         ]);
-        $review = $this->review->select('id')->findorFail($id);
+        $review = $this->review->published()->select('id')->findorFail($id);
         $review->reviewComments()->create($validated);
         return redirect()->route('guest.review', $review->id);
     }
