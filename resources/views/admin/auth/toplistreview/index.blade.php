@@ -32,15 +32,15 @@
                                 <td>{{ $item->created_at->format('m-d-Y H:i') }}</td>
                                 <td>
                                     <a href="{{ route("$route.edit", $item->id) }}">
-                                        <button type="button" class="btn btn-outline-warning btn-sm btn-icon action-btns">
-                                            <i class="mdi mdi-pencil"></i>
+                                        <button type="button" class="btn btn-outline-warning btn-sm action-btns">
+                                            Edit
                                         </button>
                                     </a>
                                     <form action="{{ route("$route.destroy", $item->id) }}" method="POST" class="d-inline-block">
                                         @method('DELETE')
                                         @csrf
-                                        <button type="submit" class="btn btn-outline-danger btn-sm btn-icon action-btns">
-                                            <i class="mdi mdi-delete"></i>
+                                        <button type="submit" class="btn btn-outline-danger btn-sm action-btns">
+                                            Delete
                                         </button>
                                     </form>
                                 </td>

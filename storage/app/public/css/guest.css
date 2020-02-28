@@ -411,14 +411,15 @@ nav {
 .progress-bar {
   background-color: #ce8579;
 }
-.progress{
+
+.progress {
   border-radius: 0px;
 }
 
 /* for select section style */
 
 select {
-  width: 100px;
+  width: 150px;
   height: 25px;
   text-align: center;
   -moz-text-align-last: center;
@@ -772,4 +773,41 @@ textarea {
 .rangeflex {
   display: -webkit-box;
   display: flex;
+}
+
+.nav-item-active {
+  border-bottom: 4px solid #d25540;
+}
+
+.circular-chart {
+  display: block;
+  margin: 10px auto;
+  max-width: 80%;
+  max-height: 250px;
+}
+
+.circle-bg {
+  fill: none;
+  stroke: #E9ECEF;
+  stroke-width: 2.8;
+}
+
+.circle {
+  fill: none;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  animation: progress 1s ease-out forwards;
+}
+
+@keyframes progress {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
+
+.circle-rating {
+  fill: #666;
+  font-family: sans-serif;
+  font-size: 10px;
+  text-anchor: middle;
 }

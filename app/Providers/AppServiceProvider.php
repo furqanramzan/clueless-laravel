@@ -30,5 +30,10 @@ class AppServiceProvider extends ServiceProvider
             $toplists = \App\Models\TopList::orderBy('order', 'desc')->select('id', 'name')->get();
             $view->with(['toplists' => $toplists]);
         });
+
+        \View::composer(['admin.layout.sidebar'], function($view){
+            $contact = \App\Models\Setting::where('key', 'contact_us')->select('id')->first();
+            $view->with(['contact' => $contact]);
+        });
     }
 }

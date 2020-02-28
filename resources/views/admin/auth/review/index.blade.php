@@ -19,8 +19,6 @@
                             <tr>
                                 <th>Company</th>
                                 <th>Room</th>
-                                <th>Country</th>
-                                <th>Region</th>
                                 <th>Visits</th>
                                 <th>Published</th>
                                 <th>Created at</th>
@@ -32,8 +30,6 @@
                             <tr>
                                 <td>{{ $item->company_name }}</td>
                                 <td>{{ $item->room_name }}</td>
-                                <td>{{ $item->country }}</td>
-                                <td>{{ $item->region }}</td>
                                 <td>{{ $item->visits }}</td>
                                 <td>
                                     <i
@@ -42,37 +38,35 @@
                                 <td>{{ $item->created_at->format('m-d-Y H:i') }}</td>
                                 <td>
                                     <a href="{{ route("$route.show", $item->id) }}" target="_blank">
-                                        <button type="button" class="btn btn-outline-info btn-sm btn-icon action-btns">
-                                            <i class="mdi mdi-eye"></i>
+                                        <button type="button" class="btn btn-outline-info btn-sm action-btns">
+                                            Preview
                                         </button>
                                     </a>
+                                    @if (!$item->published)
                                     <form action="{{ route("$route.publish", $item->id) }}" method="POST"
                                         class="d-inline-block">
                                         @csrf
-                                        <button type="submit"
-                                            class="btn btn-outline-success btn-sm btn-icon action-btns">
-                                            <i class="mdi mdi-book-open-page-variant"></i>
+                                        <button type="submit" class="btn btn-outline-success btn-sm action-btns">
+                                            Publish
                                         </button>
                                     </form>
+                                    @endif
                                     <a href="{{ route("admin.reviewcomment.show", $item->id) }}">
-                                        <button type="button"
-                                            class="btn btn-outline-secondary btn-sm btn-icon action-btns">
-                                            <i class="mdi mdi-comment"></i>
+                                        <button type="button" class="btn btn-outline-secondary btn-sm action-btns">
+                                            Comments
                                         </button>
                                     </a>
                                     <a href="{{ route("$route.edit", $item->id) }}">
-                                        <button type="button"
-                                            class="btn btn-outline-warning btn-sm btn-icon action-btns">
-                                            <i class="mdi mdi-pencil"></i>
+                                        <button type="button" class="btn btn-outline-warning btn-sm action-btns">
+                                            Edit
                                         </button>
                                     </a>
                                     <form action="{{ route("$route.destroy", $item->id) }}" method="POST"
                                         class="d-inline-block">
                                         @method('DELETE')
                                         @csrf
-                                        <button type="submit"
-                                            class="btn btn-outline-danger btn-sm btn-icon action-btns">
-                                            <i class="mdi mdi-delete"></i>
+                                        <button type="submit" class="btn btn-outline-danger btn-sm action-btns">
+                                            Delete
                                         </button>
                                     </form>
                                 </td>

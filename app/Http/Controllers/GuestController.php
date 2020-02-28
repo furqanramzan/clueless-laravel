@@ -25,6 +25,7 @@ class GuestController extends Controller
     {
         $data = [];
         $data['reviews'] = $this->review->published()->latest()->limit(12)->get();
+        $data['reviews'] = $data['reviews']->chunk(3);
         return view('guest.index', compact('data'));
     }
 
@@ -40,22 +41,79 @@ class GuestController extends Controller
             'params' => [
                 'keyword' => '',
                 'country' => '',
-                'region' => ''
+                'region' => '',
+                'jump' => 0
             ]
         ];
-        $params = $request->only('keyword', 'country', 'region');
+        $params = $request->only('keyword', 'country', 'region', 'rating', 'players', 'price', 'jump');
         $data['params'] = array_merge($data['params'], $params);
         $reviews = $this->review->published()->latest()->limit(12);
-        if($data['params']['keyword']) {
-            $reviews = $reviews->orWhere('company_name', 'like', "%{$data['params']['keyword']}%")->orWhere('room_name', 'like', "%{$data['params']['keyword']}%")->orWhere('room_overview', 'like', "%{$data['params']['keyword']}%")->orWhere('body', 'like', "%{$data['params']['keyword']}%");
+
+        // Keyword Filter
+        if (isset($data['params']['keyword']) && $data['params']['keyword']) {
+            $reviews = $reviews->where(function ($query) use ($data) {
+                $columns = ['company_name', 'room_name', 'room_overview', 'body', 'country', 'region'];
+                foreach ($columns as $column) {
+                    $query->orWhere($column, 'like', "%{$data['params']['keyword']}%");
+                }
+            });
         }
-        if($data['params']['country']) {
-            $reviews = $reviews->orWhere('country', $data['params']['country']);
+
+        // Rating Filter
+        if (isset($data['params']['rating']) && $data['params']['rating']) {
+            $rating = explode(',', $data['params']['rating']);
+            if (isset($rating[0]) && isset($rating[1])) {
+                $reviews = $reviews->where('overall', '>=', (int) $rating[0])->where('overall', '<=', (int) $rating[1]);
+            } else {
+                $data['params']['rating'] = '0,10';
+            }
+        } else {
+            $data['params']['rating'] = '0,10';
         }
-        if($data['params']['region']) {
-            $reviews = $reviews->orWhere('region', $data['params']['region']);
+
+        // Number of Players
+        if (isset($data['params']['players']) && $data['params']['players']) {
+            $players = explode(',', $data['params']['players']);
+            if (isset($players[0]) && isset($players[1])) {
+                $reviews = $reviews->where('minimum_players', '>=', (int) $players[0])->where('maximum_players', '<=', (int) $players[1]);
+            } else {
+                $data['params']['players'] = '0,1000';
+            }
+        } else {
+            $data['params']['players'] = '0,1000';
         }
+
+        // Price Filter
+        if (isset($data['params']['price']) && $data['params']['price']) {
+            $price = explode(',', $data['params']['price']);
+            if (isset($price[0]) && isset($price[1])) {
+                $reviews = $reviews->where(function($query) use ($price) {
+                    $query->orWhere('average_price', '>=', (int) $price[0])->where('average_price', '<=', (int) $price[1]);
+                });
+            } else {
+                $data['params']['price'] = '0,1000';
+            }
+        } else {
+            $data['params']['price'] = '0,1000';
+        }
+
+        // Country Filter
+        if (isset($data['params']['country']) && $data['params']['country']) {
+            $reviews = $reviews->where('country', $data['params']['country']);
+        }
+
+        // Region Filter
+        if (isset($data['params']['region']) && $data['params']['region']) {
+            $reviews = $reviews->where('region', $data['params']['region']);
+        }
+
+        // Jump Filter
+        if (isset($data['params']['jump']) && $data['params']['jump']) {
+            $reviews = $reviews->where('jump_scares', $data['params']['jump']);
+        }
+
         $reviews = $reviews->get();
+        $reviews = $reviews->chunk(3);
         $data['reviews'] = $reviews;
         $data['countries'] = $this->review->published()->select('country')->orderBy('country')->distinct('country')->get();
         $data['regions'] = $this->review->published()->select('region')->orderBy('region')->distinct('region')->get();
@@ -64,7 +122,7 @@ class GuestController extends Controller
 
     public function review($id)
     {
-        $review = $this->review->published()->with(['reviewComments' => function($query){
+        $review = $this->review->published()->with(['reviewComments' => function ($query) {
             $query->select('review_id', 'body', 'created_at')->latest();
         }])->findorFail($id);
         $review->visits++;
@@ -75,7 +133,8 @@ class GuestController extends Controller
 
     public function contact()
     {
-        return view('guest.contact');
+        $contact = config('settings.contact_us');
+        return view('guest.contact', compact('contact'));
     }
 
     public function comment(Request $request, $id)

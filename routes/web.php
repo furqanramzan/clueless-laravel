@@ -32,5 +32,6 @@ Route::prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
         Route::resource('reviewcomment', 'ReviewCommentController')->except('index', 'create', 'store');
         Route::resource('toplist', 'TopListController')->except('show');
         Route::resource('toplistreview', 'TopListReviewController')->except('show');
+        Route::resource('contact', 'SettingController')->only('edit', 'update');
     });
 });

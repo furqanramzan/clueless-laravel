@@ -198,16 +198,23 @@ class ReviewController extends Controller
             "games_mastery" => "required|numeric|max:10",
             "innovation_tech" => "required|numeric|max:10",
             "overall" => "required|numeric|max:10",
-            "difficulty" => "required|numeric|max:10",
+            "difficulty" => "required|max:190",
             "time" => "required|max:190",
             "length" => "required|max:190",
             "accessibility" => "required|max:190",
             "value" => "required|max:190",
             "ideal_for" => "required|max:190",
+            "jump_scares" => "boolean",
+            "wheelchair" => "boolean",
+            "is_closed" => "boolean",
             "good_for_kids" => "boolean",
             "good_for_enthusiasts" => "boolean",
             "good_for_design" => "boolean",
             "good_for_technology" => "boolean",
+            // Todo 
+            "average_price" => "required|numeric",
+            "maximum_players" => "required|numeric",
+            "minimum_players" => "required|numeric",
         ]);
     }
 }

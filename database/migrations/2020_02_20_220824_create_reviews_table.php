@@ -37,6 +37,12 @@ class CreateReviewsTable extends Migration
             $table->boolean('good_for_enthusiasts');
             $table->boolean('good_for_design');
             $table->boolean('good_for_technology');
+            $table->boolean('jump_scares');
+            $table->boolean('wheelchair');
+            $table->boolean('is_closed');
+            $table->string('average_price');
+            $table->string('minimum_players');
+            $table->string('maximum_players');
             $table->string('image');
             $table->bigInteger('visits')->default(0);
             $table->boolean('published')->default(0);

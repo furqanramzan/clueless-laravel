@@ -173,6 +173,30 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="average_price" class="col-sm-3 col-form-label">Average Price</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="average_price" class="form-control" id="average_price"
+                                    placeholder="Average Price" value="{{ old('average_price') }}">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="minimum_players" class="col-sm-3 col-form-label">Minimum Players</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="minimum_players" class="form-control" id="minimum_players"
+                                    placeholder="Minimum Players" value="{{ old('minimum_players') }}">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="maximum_players" class="col-sm-3 col-form-label">Maximum Players</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="maximum_players" class="form-control" id="maximum_players"
+                                    placeholder="Maximum Players" value="{{ old('maximum_players') }}">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="ideal_for" class="col-sm-3 col-form-label">Ideal For</label>
                             <div class="col-sm-9">
                                 <input type="text" name="ideal_for" class="form-control" id="ideal_for"
@@ -191,6 +215,42 @@
                                         <button class="file-upload-browse btn btn-gradient-primary"
                                             type="button">Upload</button>
                                     </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="jump_scares" class="col-sm-3 col-form-label">Jump Scares</label>
+                            <div class="col-sm-9">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="hidden" name="jump_scares" value="0">
+                                        <input type="checkbox" name="jump_scares" class="form-check-input" value="1"
+                                            {{ old('jump_scares') ? 'checked' : '' }}></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="wheelchair" class="col-sm-3 col-form-label">Wheelchair</label>
+                            <div class="col-sm-9">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="hidden" name="wheelchair" value="0">
+                                        <input type="checkbox" name="wheelchair" class="form-check-input" value="1"
+                                            {{ old('wheelchair') ? 'checked' : '' }}></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="is_closed" class="col-sm-3 col-form-label">Is Closed</label>
+                            <div class="col-sm-9">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="hidden" name="is_closed" value="0">
+                                        <input type="checkbox" name="is_closed" class="form-check-input" value="1"
+                                            {{ old('is_closed') ? 'checked' : '' }}></label>
                                 </div>
                             </div>
                         </div>

@@ -11,10 +11,10 @@
             </button>
             <div class="collapse navbar-collapse " id="navbarNavDropdown">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item @yield('find')">
                         <a class="nav-link" href="{{ route('guest.find') }}">FIND A ROOM <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item active dropdown">
+                    <li class="nav-item dropdown @yield('toplist')">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                             TOP LIST
@@ -25,7 +25,7 @@
                             @endforeach
                         </div>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item @yield('contact')">
                         <a class="nav-link" href="{{ route('guest.contact') }}">CONTACT US</a>
                     </li>
                 </ul>

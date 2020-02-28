@@ -4,7 +4,7 @@
 
 <body>
     @include('guest.layouts.header')
-    <section id="review">
+    <section style="margin-top:100px; min-height: calc(100vh - 300px);">
         @yield('content')
     </section>
     @include('guest.layouts.footer')
