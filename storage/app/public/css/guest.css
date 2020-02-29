@@ -887,6 +887,20 @@ textarea {
   padding: 5px 10px;
 }
 
+.navbar-brand {
+  margin-right: 0;
+}
+
+@media only screen and (max-width: 345px) {
+  .navbar {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+
+
+
   /* select {
     width: 268px;
     padding: 5px;
