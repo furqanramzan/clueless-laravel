@@ -1,4 +1,36 @@
-.btn.action-btns{
+.btn.action-btns {
     font-size: 10px;
     padding: 5px;
+}
+
+.btn-gradient-primary {
+    background: -webkit-gradient(linear, left top, right top, from(#CE8579), to(#CE8579));
+    background: linear-gradient(to right, #CE8579, #CE8579);
+}
+
+.bg-gradient-primary {
+    background: -webkit-gradient(linear, left top, right top, from(#CE8579), to(#CE8579))!important;
+    background: linear-gradient(to right, #CE8579, #CE8579)!important;
+}
+
+.text-primary {
+    color: #CE8579 !important;
+}
+
+.sidebar .nav .nav-item.active>.nav-link .menu-title {
+    color: #CE8579;
+}
+
+.sidebar .nav .nav-item.active>.nav-link i {
+    color: #CE8579;
+}
+
+.form-check .form-check-label input[type=checkbox]+.input-helper:before {
+    border: solid #CE8579;
+}
+
+.form-check .form-check-label input[type=checkbox]:checked+.input-helper:before {
+    background: -webkit-gradient(linear,left top,right top,from(#CE8579),to(#CE8579));
+    background: linear-gradient(to right,#CE8579,#CE8579);
+    border-width: 0;
 }

@@ -31,7 +31,9 @@ class GuestController extends Controller
 
     public function toplist($id)
     {
-        $toplist = $this->toplist->with('toplistreview.review')->findorFail($id);
+        $toplist = $this->toplist->with(['toplistreview' => function($query){
+            $query->with('review')->limit(10)->latest();
+        }])->findorFail($id);
         return view('guest.toplist', compact('toplist'));
     }
 

@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg ">
             <a class="navbar-brand" href="{{ route('guest.index') }}" style="font-size:30px;"><img
-                    src="/assets/images/logo.png" width="150px" height="50px" alt=""></a>
+                    src="/assets/images/logo.png"></a>
             <button class="navbar-toggler justify-content-center" type="button" data-toggle="collapse"
                 data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -17,7 +17,7 @@
                     <li class="nav-item dropdown @yield('toplist')">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
-                            TOP LIST
+                            TOP LIST <i class="fa fa-angle-down"></i>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             @foreach ($toplists as $toplist)

@@ -33,7 +33,7 @@
         <li class="nav-item @yield('contact')">
             <a class="nav-link" href="{{ route('admin.contact.edit', $contact->id) }}">
                 <span class="menu-title">Edit Contact Us</span>
-                <i class="mdi mdi-format-vertical-align-center menu-icon"></i>
+                <i class="mdi mdi-pencil menu-icon"></i>
             </a>
         </li>
     </ul>
