@@ -48,12 +48,12 @@ function animate() {
             <div class="w-100 float-left">
                 <img src="{{ asset($review->image) }}" style="width: 100%; float: left; height: 300px">
             </div>
-            <div class="w-100 float-left mt-4">
+            <div class="w-100 float-left mt-5">
                 <div class="container-fluid px-5">
                     <div class="row">
-                        <div class="col-xl-8 col-lg-8 col-md-12 mt-3">
+                        <div class="col-xl-8 col-lg-8 col-md-12">
                             <div class="main review-detail">
-                                <div class="cname" style="line-height: 10px;">
+                                <div class="cname">
                                     <h1 style="font-weight: bold; line-height: 40px; font-size: 45px;" class="mb-0">
                                         <a style="text-decoration: none; color: black;"
                                             href="{{ route('guest.find', ['keyword'=>$review->company_name]) }}"
@@ -85,8 +85,8 @@ function animate() {
                                         </a>
                                     </h4>
                                 </div>
-                                <div class="rating pt-4">
-                                    <h1 class="display-1 " style="font-weight: bold;color:#944a41; font-size: 105px;">
+                                <div class="rating w-100 float-left">
+                                    <h1 style="font-weight: bold;color:#944a41; font-size: 105px; line-height: 90px;">
                                         {{ $review->overall }}
                                     </h1>
                                 </div>
@@ -97,7 +97,7 @@ function animate() {
                             <div class="summary mb-4 w-100 float-left"
                                 style="background-color: #D7D7D7; padding: 0 20px;">
                                 <div class="row">
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-8 px-1">
                                         <h1 style="font-weight: bold; font-size: 60px;" class="mb-3">Summary</h1>
                                         <label class="mb-0" style="font-weight: bold;">Puzzel & Gameplay</label>
                                         <div class="d-flex">
