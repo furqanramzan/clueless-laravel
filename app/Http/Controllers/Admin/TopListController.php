@@ -59,6 +59,9 @@ class TopListController extends Controller
     public function store(Request $request)
     {
         $validated = $this->validateRequest($request);
+        $validated = array_merge($validated, $request->validate([
+            "order" => "required|numeric|unique:top_lists",
+        ]));
 
         $this->model->create($validated);
 
@@ -98,6 +101,9 @@ class TopListController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $this->validateRequest($request);
+        $validated = array_merge($validated, $request->validate([
+            "order" => "required|numeric|unique:top_lists,order,".$id,
+        ]));
 
         $item = $this->model->findorFail($id);
         $item->update($validated);
@@ -137,7 +143,6 @@ class TopListController extends Controller
             "name" => "required|max:190",
             "title" => "required|max:190",
             "introduction" => "required",
-            "order" => "required|numeric",
         ]);
     }
 }
