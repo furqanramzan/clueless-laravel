@@ -218,8 +218,9 @@ function animate() {
                                 <div class="comments">
                                     <div class="comment-wrap">
                                         <div class="comment-block">
-                                            <form action="{{ route('guest.comment', $review->id) }}" method="POST">
+                                            <form id="comment_form">
                                                 @csrf
+                                                <input type="hidden" name="review" value="{{ $review->id }}">
                                                 <textarea name="body" cols="30" rows="3" placeholder="Add comment..."
                                                     required></textarea>
                                                 <button type="submit" class="btn mt-2 "
@@ -227,18 +228,20 @@ function animate() {
                                             </form>
                                         </div>
                                     </div>
-                                    @foreach ($review->reviewComments as $comment)
-                                    <div class="comment-wrap">
-                                        <div class="comment-block">
-                                            <p class="comment-text">{{ $comment->body }}
-                                            </p>
-                                            <div class="bottom-comment">
-                                                <div class="comment-date float-right">
-                                                    {{ $comment->created_at->format('M d, Y @ g:i A') }}</div>
+                                    <div id="comments_list">
+                                        @foreach ($review->reviewComments as $comment)
+                                        <div class="comment-wrap">
+                                            <div class="comment-block">
+                                                <p class="comment-text">{{ $comment->body }}
+                                                </p>
+                                                <div class="bottom-comment">
+                                                    <div class="comment-date float-right">
+                                                        {{ $comment->created_at->format('M d, Y @ g:i A') }}</div>
+                                                </div>
                                             </div>
                                         </div>
+                                        @endforeach
                                     </div>
-                                    @endforeach
                                 </div>
                             </section>
                         </div>
@@ -253,12 +256,16 @@ function animate() {
                                             <img src="{{ asset($item->image) }}" width="100px" height="50px">
                                         </div>
                                         <div class="main mostread">
-                                            <div class="cname pl-2 d-flex" style="line-height: 19px; flex-direction: column; justify-content: flex-end;">
-                                                <span style="font-size: 20px; margin-bottom: 5px;">{{ $item->company_name }}</span>
+                                            <div class="cname pl-2 d-flex"
+                                                style="line-height: 19px; flex-direction: column; justify-content: flex-end;">
+                                                <span
+                                                    style="font-size: 20px; margin-bottom: 5px;">{{ $item->company_name }}</span>
                                                 <span style="font-size: 20px;">{{ $item->room_name }}</span>
                                             </div>
-                                            <div class="rating1 d-flex" style=" color:black; font-weight:bold; align-items: flex-end; justify-content: flex-end;">
-                                                <h1 style="margin-bottom: -10px; font-size: 45px; font-weight: bold;">{{ $review->overall }}</h1>
+                                            <div class="rating1 d-flex"
+                                                style=" color:black; font-weight:bold; align-items: flex-end; justify-content: flex-end;">
+                                                <h1 style="margin-bottom: -10px; font-size: 45px; font-weight: bold;">
+                                                    {{ $review->overall }}</h1>
                                             </div>
                                         </div>
                                     </div>

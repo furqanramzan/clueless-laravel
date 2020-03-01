@@ -145,7 +145,8 @@ class GuestController extends Controller
             'body' => 'required'
         ]);
         $review = $this->review->published()->select('id')->findorFail($id);
-        $review->reviewComments()->create($validated);
-        return redirect()->route('guest.review', $review->id);
+        $comment = $review->reviewComments()->create($validated);
+        $comment['date'] = $comment->created_at->format('M d, Y @ g:i A');
+        return $comment;
     }
 }
