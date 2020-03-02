@@ -149,6 +149,7 @@ class TopListReviewController extends Controller
             "top_list" => "required|numeric|exists:top_lists,id",
             "review" => "required|numeric|exists:reviews,id",
             "overview" => "required",
+            "order" => "required|numeric",
         ]);
         $validated['top_list_id'] = $validated['top_list'];
         $validated['review_id'] = $validated['review'];

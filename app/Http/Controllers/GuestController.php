@@ -32,7 +32,7 @@ class GuestController extends Controller
     public function toplist($id)
     {
         $toplist = $this->toplist->with(['toplistreview' => function($query){
-            $query->with('review')->limit(10)->latest();
+            $query->with('review')->limit(10)->orderBy('order', 'desc');
         }])->findorFail($id);
         return view('guest.toplist', compact('toplist'));
     }

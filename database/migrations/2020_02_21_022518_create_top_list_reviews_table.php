@@ -18,6 +18,7 @@ class CreateTopListReviewsTable extends Migration
             $table->bigInteger('top_list_id');
             $table->bigInteger('review_id');
             $table->longText('overview');
+            $table->integer('order');
             $table->timestamps();
         });
     }

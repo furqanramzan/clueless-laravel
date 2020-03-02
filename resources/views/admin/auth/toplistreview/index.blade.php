@@ -5,7 +5,8 @@
 <div class="content-wrapper">
     @if (session('message'))
     <div class="row" id="proBanner">
-        @include('admin.layout.notification', ['notificationType' => session('type') ?? 'success', 'notificationTitle' => session('title'), 'notificationMessage' => session('message')])
+        @include('admin.layout.notification', ['notificationType' => session('type') ?? 'success', 'notificationTitle'
+        => session('title'), 'notificationMessage' => session('message')])
     </div>
     @endif
     @include('admin.layout.page_header', ['pageRoute' => "$route.create", 'pageIcon' => 'plus', 'pageTitle' => $title])
@@ -19,6 +20,7 @@
                                 <th>Name</th>
                                 <th>Title</th>
                                 <th>Introduction</th>
+                                <th>Order</th>
                                 <th>Created at</th>
                                 <th>Action</th>
                             </tr>
@@ -29,6 +31,7 @@
                                 <td>{{ $item->topList->name }}</td>
                                 <td>{{ $item->review->room_name }}</td>
                                 <td>{{ $string->limit($item->overview, 30) }}</td>
+                                <td>{{ $item->order }}</td>
                                 <td>{{ $item->created_at->format('m-d-Y H:i') }}</td>
                                 <td>
                                     <a href="{{ route("$route.edit", $item->id) }}">
@@ -36,7 +39,8 @@
                                             Edit
                                         </button>
                                     </a>
-                                    <form action="{{ route("$route.destroy", $item->id) }}" method="POST" class="d-inline-block">
+                                    <form action="{{ route("$route.destroy", $item->id) }}" method="POST"
+                                        class="d-inline-block">
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" class="btn btn-outline-danger btn-sm action-btns">

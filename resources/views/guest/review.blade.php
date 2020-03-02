@@ -3,39 +3,82 @@
 @push('footer')
 <script>
     // get the element to animate
-var element = document.getElementById('circle_progress');
-var elementHeight = element.clientHeight;
+// var element = document.getElementById('circle_progress');
+// var elementHeight = element.clientHeight;
 
-// listen for scroll event and call animate function
+// // listen for scroll event and call animate function
+// document.addEventListener('scroll', animate);
+
+// // check if element is in view
+// function inView() {
+//   // get window height
+//   var windowHeight = window.innerHeight;
+//   // get number of pixels that the document is scrolled
+//   var scrollY = window.scrollY || window.pageYOffset;
+  
+//   // get current scroll position (distance from the top of the page to the bottom of the current viewport)
+//   var scrollPosition = scrollY + windowHeight;
+//   // get element position (distance from the top of the page to the bottom of the element)
+//   var elementPosition = element.getBoundingClientRect().top + scrollY + elementHeight;
+  
+//   // is scroll position greater than element position? (is element in view?)
+//   if (scrollPosition > elementPosition) {
+//     return true;
+//   }
+  
+//   return false;
+// }
+
+// // animate element when it is in view
+// function animate() {
+//   // is element in view?
+//   if (inView()) {
+//       // element is in view, add class to element
+//       element.classList.add('circle');
+//   }
+// }
+
+
+
+
 document.addEventListener('scroll', animate);
-
-// check if element is in view
-function inView() {
-  // get window height
+function inView(element) {
+    var elementHeight = element.clientHeight;
   var windowHeight = window.innerHeight;
-  // get number of pixels that the document is scrolled
   var scrollY = window.scrollY || window.pageYOffset;
-  
-  // get current scroll position (distance from the top of the page to the bottom of the current viewport)
   var scrollPosition = scrollY + windowHeight;
-  // get element position (distance from the top of the page to the bottom of the element)
   var elementPosition = element.getBoundingClientRect().top + scrollY + elementHeight;
-  
-  // is scroll position greater than element position? (is element in view?)
   if (scrollPosition > elementPosition) {
     return true;
   }
-  
   return false;
 }
-
-// animate element when it is in view
 function animate() {
-  // is element in view?
-  if (inView()) {
-      // element is in view, add class to element
+    var element = document.getElementById('circle_progress');
+  if (inView(element)) {
       element.classList.add('circle');
   }
+  var element = document.getElementById('puzzles_gameplay');
+  if (inView(element)) {
+      element.classList.add('w-100');
+  }
+  var element = document.getElementById('design_and_theming');
+  if (inView(element)) {
+      element.classList.add('w-100');
+  }
+  var element = document.getElementById('games_mastery');
+  if (inView(element)) {
+      element.classList.add('w-100');
+  }
+  var element = document.getElementById('innovation_tech');
+  if (inView(element)) {
+      element.classList.add('w-100');
+  }
+//   var element = document.getElementById('puzzles_gameplay');
+//     var height = element.clientHeight;
+//   if (inView(height)) {
+//       element.classList.add('w-100');
+//   }
 }
 
 </script>
@@ -99,9 +142,9 @@ function animate() {
                                         <label class="mb-0" style="font-weight: bold;">Puzzles</label>
                                         <div class="d-flex">
                                             <div class="progress" style="height: 20px; width: 95%;">
-                                                <div class="progress-bar" role="progressbar"
-                                                    style="width: {{ ((float)$review->puzzles_gameplay / 10) * 100 }}%; height: 20px"
-                                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                                <div
+                                                    style="height: 20px; width: {{ ((float)$review->puzzles_gameplay / 10) * 100 }}%;">
+                                                    <div id="puzzles_gameplay" class="h-100 progress-bar"></div>
                                                 </div>
                                             </div>
                                             <label style="width: 10%;">
@@ -113,9 +156,9 @@ function animate() {
                                         <label class="mb-0" style="font-weight: bold;">Design & Theming</label>
                                         <div class="d-flex">
                                             <div class="progress" style="height: 20px; width: 95%;">
-                                                <div class="progress-bar" role="progressbar"
-                                                    style="width: {{ ((float)$review->design_and_theming / 10) * 100 }}%; height: 20px"
-                                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                                <div
+                                                    style="height: 20px; width: {{ ((float)$review->design_and_theming / 10) * 100 }}%;">
+                                                    <div id="design_and_theming" class="h-100 progress-bar"></div>
                                                 </div>
                                             </div>
                                             <label style="width: 10%;">
@@ -127,9 +170,9 @@ function animate() {
                                         <label class="mb-0" style="font-weight: bold;">Games mastery</label>
                                         <div class="d-flex">
                                             <div class="progress" style="height: 20px; width: 95%;">
-                                                <div class="progress-bar" role="progressbar"
-                                                    style="width: {{ ((float)$review->games_mastery / 10) * 100 }}%; height: 20px"
-                                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                                <div
+                                                    style="height: 20px; width: {{ ((float)$review->games_mastery / 10) * 100 }}%;">
+                                                    <div id="games_mastery" class="h-100 progress-bar"></div>
                                                 </div>
                                             </div>
                                             <label style="width: 10%;">
@@ -141,9 +184,9 @@ function animate() {
                                         <label class="mb-0" style="font-weight: bold;">Innovation & Tech</label>
                                         <div class="d-flex">
                                             <div class="progress" style="height: 20px; width: 95%;">
-                                                <div class="progress-bar" role="progressbar"
-                                                    style="width: {{ ((float)$review->innovation_tech / 10) * 100 }}%; height: 20px"
-                                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                                <div
+                                                    style="height: 20px; width: {{ ((float)$review->innovation_tech / 10) * 100 }}%;">
+                                                    <div id="innovation_tech" class="h-100 progress-bar"></div>
                                                 </div>
                                             </div>
                                             <label style="width: 10%;">
@@ -184,7 +227,7 @@ function animate() {
                                             <h5 style="font-size: 16px; font-weight: bold;">Ideal for: <span
                                                     style="font-size: 14px; font-weight: 500;">{{ $review->ideal_for }}</span>
                                             </h5>
-    
+
                                         </div>
                                         <div class="good_for mb-3 mt-4">
                                             @if ($review->good_for_kids)
@@ -230,7 +273,8 @@ function animate() {
                                             <form id="comment_form">
                                                 @csrf
                                                 <input type="hidden" name="review" value="{{ $review->id }}">
-                                                <input type="text" name="name" required placeholder="Your name" class="mb-2">
+                                                <input type="text" name="name" required placeholder="Your name"
+                                                    class="mb-2">
                                                 <textarea name="body" cols="30" rows="3" placeholder="Add comment..."
                                                     required></textarea>
                                                 <button type="submit" class="btn mt-2 "
