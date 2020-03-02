@@ -27,9 +27,9 @@
                         <tbody>
                             @foreach ($items as $item)
                             <tr>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $string->limit($item->title, 30) }}</td>
-                                <td>{{ $string->limit($item->introduction, 30) }}</td>
+                                <td>{{ $string->limit($item->name, 20) }}</td>
+                                <td>{{ $string->limit($item->title, 20) }}</td>
+                                <td>{{ $string->limit($item->introduction, 20) }}</td>
                                 <td>{{ $item->order }}</td>
                                 <td>{{ $item->created_at->format('m-d-Y H:i') }}</td>
                                 <td>

@@ -27,10 +27,9 @@ class CreateReviewsTable extends Migration
             $table->string('games_mastery');
             $table->string('innovation_tech');
             $table->string('overall');
-            $table->string('difficulty');
             $table->string('time');
             $table->string('length');
-            $table->string('accessibility');
+            $table->string('accessibility')->nullable();
             $table->string('value');
             $table->string('ideal_for');
             $table->boolean('good_for_kids');
@@ -44,6 +43,7 @@ class CreateReviewsTable extends Migration
             $table->string('minimum_players');
             $table->string('maximum_players');
             $table->string('image');
+            $table->string('detail_image')->nullable();
             $table->bigInteger('visits')->default(0);
             $table->boolean('published')->default(0);
             $table->timestamp('published_date')->nullable();

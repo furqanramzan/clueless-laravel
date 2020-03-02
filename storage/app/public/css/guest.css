@@ -1,6 +1,7 @@
 body {
   color: black !important;
   font-family: 'Futura-Normal', arial;
+  letter-spacing: 1px;
 }
 
 .navbar ul>li {
@@ -126,7 +127,8 @@ nav {
   color: black;
   width: 20%;
 }
-.main{
+
+.main {
   width: 100%;
   display: flex;
 }
@@ -134,7 +136,8 @@ nav {
 .toplist .main .cname {
   width: 40%;
 }
-.toplist .rating h1{
+
+.toplist .rating h1 {
   float: left;
 }
 
@@ -668,7 +671,8 @@ p {
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
 }
 
-.comment-block textarea {
+.comment-block textarea, input {
+  padding: 10px;
   width: 100%;
   resize: none;
   background-color: rgba(128, 128, 128, 0.294);
@@ -741,6 +745,31 @@ textarea::placeholder {
   padding: 3px;
 }
 
+input::-webkit-input-placeholder {
+  color: black;
+  padding: 3px;
+}
+
+input::-moz-placeholder {
+  color: black;
+  padding: 3px;
+}
+
+input:-ms-input-placeholder {
+  color: black;
+  padding: 3px;
+}
+
+input::-ms-input-placeholder {
+  color: black;
+  padding: 3px;
+}
+
+input::placeholder {
+  color: black;
+  padding: 3px;
+}
+
 textarea {
   padding: 10px;
 }
@@ -773,7 +802,7 @@ textarea {
   margin: 10px auto;
   max-width: 80%;
   max-height: 250px;
-  stroke: #C4341C;
+  stroke: #944a41;
 }
 
 .circle-bg {
@@ -797,7 +826,7 @@ textarea {
 
 .circle-rating {
   fill: black;
-  font-size: 20px;
+  font-size: 16px;
   text-anchor: middle;
 }
 
@@ -812,6 +841,7 @@ textarea {
 }
 
 /* Hide the browser's default checkbox */
+
 .checkboxcontainer input {
   position: absolute;
   opacity: 0;
@@ -821,6 +851,7 @@ textarea {
 }
 
 /* Create a custom checkbox */
+
 .checkmark {
   position: absolute;
   top: 0;
@@ -832,17 +863,20 @@ textarea {
 }
 
 /* On mouse-over, add a grey background color */
+
 /* .checkboxcontainer:hover input ~ .checkmark {
   background-color: #ccc;
 } */
 
 /* When the checkbox is checked, add a blue background */
-.checkboxcontainer input:checked ~ .checkmark {
+
+.checkboxcontainer input:checked~.checkmark {
   background-color: #D25540;
   border-color: #D25540;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
+
 .checkmark:after {
   content: "";
   position: absolute;
@@ -850,11 +884,13 @@ textarea {
 }
 
 /* Show the checkmark when checked */
-.checkboxcontainer input:checked ~ .checkmark:after {
+
+.checkboxcontainer input:checked~.checkmark:after {
   display: block;
 }
 
 /* Style the checkmark/indicator */
+
 .checkboxcontainer .checkmark:after {
   left: 3px;
   top: -1px;
@@ -872,7 +908,7 @@ textarea {
 }
 
 .nav-link {
-  padding-bottom: 0px;
+  padding: 10px 15px !important;
 }
 
 .dropdown-toggle::after {
@@ -880,7 +916,7 @@ textarea {
 }
 
 .navbar-expand-lg .navbar-nav .dropdown-menu {
-    border-radius: 0px;
+  border-radius: 0px;
 }
 
 .dropdown-menu {
@@ -898,10 +934,41 @@ textarea {
   }
 }
 
+.review_detial_area {
+  text-decoration: none !important;
+  color: #d25540;
+}
 
+.review_detial_area:hover {
+  color: #944a41;
+}
 
+@media only screen and (max-width: 992px) {
+  .nav-link{
+    color: #d25540 !important;
+  }
+}
 
-  /* select {
+.good_for {
+  display: flex;
+}
+.good_for a{
+  margin-right: 20px;
+}
+@media only screen and (max-width: 650px) {
+  .good_for{
+    flex-direction: column;
+  }
+  .good_for a{
+    margin-right: 0px;
+    margin-bottom: 10px;
+  }
+  .good_for a span{
+    width: 185px;
+  }
+}
+
+/* select {
     width: 268px;
     padding: 5px;
     font-size: 16px;
@@ -913,4 +980,3 @@ textarea {
     -webkit-appearance: none;
     background-position-x: 244px;
   } */
-  

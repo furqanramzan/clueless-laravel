@@ -6,7 +6,7 @@
     <div class="row">
         <div style="margin-top:100px; min-height: calc(100vh - 300px); width: 100%; float: left;">
             <div class="container">
-                <h1 class="text-center">{{ $toplist->title }}</h1>
+                <h1 class="mt-2 font-weight-bold text-center">{{ $toplist->title }}</h1>
                 <div class="row">
                     <div class="col-sm-12">
                         <h5>
@@ -20,7 +20,7 @@
                 @foreach ($toplist->toplistreview as $toplistreview)
                 <a style="color: black; text-decoration: none; width: 100%; float: left;""
             href=" {{ route('guest.review', $toplistreview->review->id) }}">
-                    <div style="border-bottom: 2px solid #A1A1A1;" class="row mb-5 pb-5">
+                    <div style="border-bottom: 2px solid #A1A1A1;" class="row mb-5 pb-4">
                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 p-0">
                             <img src="{{ asset($toplistreview->review->image) }}" style="width: 100%; height: 200px;">
                         </div>

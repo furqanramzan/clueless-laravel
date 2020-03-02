@@ -16,6 +16,7 @@ class CreateReviewCommentsTable extends Migration
         Schema::create('review_comments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('review_id');
+            $table->longText('name');
             $table->longText('body');
             $table->timestamps();
         });

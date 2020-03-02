@@ -42,15 +42,13 @@
                                             Preview
                                         </button>
                                     </a>
-                                    @if (!$item->published)
                                     <form action="{{ route("$route.publish", $item->id) }}" method="POST"
                                         class="d-inline-block">
                                         @csrf
                                         <button type="submit" class="btn btn-outline-success btn-sm action-btns">
-                                            Publish
+                                            {{ $item->published ? 'Unpublish' : 'Publish' }}
                                         </button>
                                     </form>
-                                    @endif
                                     <a href="{{ route("admin.reviewcomment.show", $item->id) }}">
                                         <button type="button" class="btn btn-outline-secondary btn-sm action-btns">
                                             Comments

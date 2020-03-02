@@ -27,6 +27,7 @@ $(document).ready(function () {
         console.log(inputs);
         var data = {
             _token: inputs._token,
+            name: inputs.name,
             body: inputs.body,
         };
 
@@ -34,7 +35,7 @@ $(document).ready(function () {
         $.post("/comment/" + inputs.review, data,
             function (data, status) {
                 if (status === 'success') {
-                    var comment = '<div class="comment-wrap"><div class="comment-block"><p class="comment-text">' + data.body + '     </p><div class="bottom-comment"><div class="comment-date float-right">' + data.date + '</div></div></div></div>';
+                    var comment = '<div class="comment-wrap"><div class="comment-block"><h4 class="mb-0">'+data.name+'</h4><p class="comment-text">' + data.body + '     </p><div class="bottom-comment"><div class="comment-date float-right">' + data.date + '</div></div></div></div>';
                     $("#comments_list").prepend(comment);
                     $(':input[type="submit"]').prop('disabled', false);
                 } else {

@@ -133,14 +133,6 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="difficulty" class="col-sm-3 col-form-label">Difficulty Score</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="difficulty" class="form-control" id="difficulty"
-                                    placeholder="Difficulty Score" value="{{ old('difficulty') }}">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
                             <label for="time" class="col-sm-3 col-form-label">Time</label>
                             <div class="col-sm-9">
                                 <input type="text" name="time" class="form-control" id="time" placeholder="Time"
@@ -211,6 +203,21 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control file-upload-info" disabled
                                         placeholder="Upload Image">
+                                    <span class="input-group-append">
+                                        <button class="file-upload-browse btn btn-gradient-primary"
+                                            type="button">Upload</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Detail Image</label>
+                            <div class="col-sm-9">
+                                <input type="file" name="detail_image" class="file-upload-default d-none">
+                                <div class="input-group">
+                                    <input type="text" class="form-control file-upload-info" disabled
+                                        placeholder="Upload Detail Image">
                                     <span class="input-group-append">
                                         <button class="file-upload-browse btn btn-gradient-primary"
                                             type="button">Upload</button>

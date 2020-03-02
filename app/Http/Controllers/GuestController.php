@@ -47,9 +47,23 @@ class GuestController extends Controller
                 'jump' => 0
             ]
         ];
-        $params = $request->only('keyword', 'country', 'region', 'rating', 'players', 'price', 'jump');
+        $params = $request->only('keyword', 'country', 'region', 'rating', 'players', 'price', 'jump', 'good_for_kids', 'good_for_enthusiasts', 'good_for_design', 'good_for_technology');
         $data['params'] = array_merge($data['params'], $params);
         $reviews = $this->review->published()->latest()->limit(12);
+
+        // Good For Filters
+        if (isset($data['params']['good_for_kids']) && $data['params']['good_for_kids']) {
+            $reviews = $reviews->where('good_for_kids', 1);
+        }
+        if (isset($data['params']['good_for_enthusiasts']) && $data['params']['good_for_enthusiasts']) {
+            $reviews = $reviews->where('good_for_enthusiasts', 1);
+        }
+        if (isset($data['params']['good_for_design']) && $data['params']['good_for_design']) {
+            $reviews = $reviews->where('good_for_design', 1);
+        }
+        if (isset($data['params']['good_for_technology']) && $data['params']['good_for_technology']) {
+            $reviews = $reviews->where('good_for_technology', 1);
+        }
 
         // Keyword Filter
         if (isset($data['params']['keyword']) && $data['params']['keyword']) {
@@ -125,7 +139,7 @@ class GuestController extends Controller
     public function review($id)
     {
         $review = $this->review->published()->with(['reviewComments' => function ($query) {
-            $query->select('review_id', 'body', 'created_at')->latest();
+            $query->select('review_id', 'name', 'body', 'created_at')->latest();
         }])->findorFail($id);
         $review->visits++;
         $review->save();
@@ -142,7 +156,8 @@ class GuestController extends Controller
     public function comment(Request $request, $id)
     {
         $validated = $request->validate([
-            'body' => 'required'
+            'name' => 'required',
+            'body' => 'required',
         ]);
         $review = $this->review->published()->select('id')->findorFail($id);
         $comment = $review->reviewComments()->create($validated);

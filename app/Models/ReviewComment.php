@@ -12,7 +12,7 @@ class ReviewComment extends Model
      * @var array
      */
     protected $fillable = [
-        'review_id', 'body'
+        'review_id', 'name', 'body'
     ];
 
     public function review()

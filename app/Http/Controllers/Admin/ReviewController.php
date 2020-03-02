@@ -63,6 +63,9 @@ class ReviewController extends Controller
         ]));
 
         $validated['image'] = $validated['image']->store('uploads/reviews', 'public_folder');
+        if (isset($validated['detail_image'])) {
+            $validated['detail_image'] = $validated['detail_image']->store('uploads/reviews', 'public_folder');
+        }
 
         $this->model->create($validated);
 
@@ -83,7 +86,7 @@ class ReviewController extends Controller
      */
     public function show($id)
     {
-        $review = $this->model->with(['reviewComments' => function($query){
+        $review = $this->model->with(['reviewComments' => function ($query) {
             $query->select('review_id', 'body', 'created_at')->latest();
         }])->findorFail($id);
         $reviews = $this->model->orderBy('visits', 'desc')->limit(5)->get();
@@ -118,14 +121,18 @@ class ReviewController extends Controller
     {
         $validated = $this->validateRequest($request);
         $validated = array_merge($validated, $request->validate([
-            "image" => "nullable|image|exclude_if:image," . null
+            "image" => "nullable|image|exclude_if:image," . null,
         ]));
 
         $item = $this->model->findorFail($id);
 
-        if(isset($validated['image'])) {
+        if (isset($validated['image'])) {
             $validated['image'] = $validated['image']->store('uploads/reviews', 'public_folder');
             $this->storage->disk('public_folder')->delete($item->image);
+        }
+        if (isset($validated['detail_image'])) {
+            $validated['detail_image'] = $validated['detail_image']->store('uploads/reviews', 'public_folder');
+            $this->storage->disk('public_folder')->delete($item->detail_image);
         }
 
         $item->update($validated);
@@ -147,8 +154,9 @@ class ReviewController extends Controller
      */
     public function destroy($id)
     {
-        $item = $this->model->select('id', 'image')->findorFail($id);
+        $item = $this->model->select('id', 'image', 'detail_image')->findorFail($id);
         $this->storage->disk('public_folder')->delete($item->image);
+        $this->storage->disk('public_folder')->delete($item->detail_image);
         $item->delete();
 
         $title = $this->titles['singular'];
@@ -170,7 +178,7 @@ class ReviewController extends Controller
     {
         $item = $this->model->select('id', 'published', 'published_date')->findorFail($id);
         $item->update([
-            'published' => 1,
+            'published' => !$item['published'],
             'published_date' => now(),
         ]);
 
@@ -198,10 +206,9 @@ class ReviewController extends Controller
             "games_mastery" => "required|numeric|max:10",
             "innovation_tech" => "required|numeric|max:10",
             "overall" => "required|numeric|max:10",
-            "difficulty" => "required|max:190",
             "time" => "required|max:190",
             "length" => "required|max:190",
-            "accessibility" => "required|max:190",
+            "accessibility" => "nullable|max:190",
             "value" => "required|max:190",
             "ideal_for" => "required|max:190",
             "jump_scares" => "boolean",
@@ -211,6 +218,7 @@ class ReviewController extends Controller
             "good_for_enthusiasts" => "boolean",
             "good_for_design" => "boolean",
             "good_for_technology" => "boolean",
+            "detail_image" => "nullable|image|exclude_if:detail_image," . null,
             // Todo 
             "average_price" => "required|numeric",
             "maximum_players" => "required|numeric",

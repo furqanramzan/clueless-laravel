@@ -68,7 +68,7 @@
     <div class="row">
         <div style="margin-top:100px; min-height: calc(100vh - 300px); width: 100%; float: left;">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 px-0">
-                    <h1 class="mt-2 font-weight-bold">Find your next Escape Room </h1>
+                    <h1 class="mt-2 font-weight-bold text-center">Find your next Escape Room </h1>
                 </div>
             <form action="{{ route('guest.find') }}" class="w-100">
                 <div class="col-sm-12">
@@ -126,7 +126,7 @@
                     </div>
                     <div class="row mb-1">
                         <div class="col-md-4 col-sm-12 px-0 d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0">Jumps Score</h5>
+                            <h5 class="mb-0">Jump Scares</h5>
                             <div style="width: 145px;">
                                 <label class="checkboxcontainer">
                                     <input type="checkbox" name="jump" value="1"
