@@ -11,10 +11,10 @@ class SettingController extends Controller
     private $model;
     private $hash;
     private $view = "admin.auth.setting";
-    private $route = "admin.contact";
+    private $route = "admin.setting";
     private $titles = [
-        'plural' => 'contacts',
-        'singular' => 'contact'
+        'plural' => 'settings',
+        'singular' => 'setting'
     ];
 
     public function __construct(Setting $model)
@@ -30,10 +30,16 @@ class SettingController extends Controller
      */
     public function edit($id)
     {
-        $title = ucfirst($this->titles['singular']);
-        $route = $this->route;
+        $item = $this->model->select('id', 'key', 'name', 'value')->findorFail($id);
 
-        $item = $this->model->select('id', 'name', 'value')->findorFail($id);
+        $title = 'Setting';
+        if ($item->key == 'contact_us') {
+            $title = 'Contact Us';
+        }
+        if ($item->key == 'footer') {
+            $title = 'Footer';
+        }
+        $route = $this->route;
 
         return view($this->view . '.edit', compact('item', 'title', 'route'));
     }
@@ -50,7 +56,7 @@ class SettingController extends Controller
         $validated = $request->validate([
             "value" => "required",
         ]);
-        
+
         $item = $this->model->findorFail($id);
         $item->update($validated);
 

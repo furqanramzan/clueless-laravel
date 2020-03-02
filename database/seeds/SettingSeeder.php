@@ -19,9 +19,14 @@ class SettingSeeder extends Seeder
      */
     public function run()
     {
+        // $this->setting->create([
+        //     'key' => 'contact_us',
+        //     'name' => 'Contact Us Page',
+        //     'value' => ''
+        // ]);
         $this->setting->create([
-            'key' => 'contact_us',
-            'name' => 'Contact Us Page',
+            'key' => 'footer',
+            'name' => 'Edit Footer Content',
             'value' => ''
         ]);
     }

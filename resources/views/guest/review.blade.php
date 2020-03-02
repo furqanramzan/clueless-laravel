@@ -166,58 +166,60 @@ function animate() {
                                         </svg>
                                     </div>
                                 </div>
-                                <div class="w-100 float-left mb-4">
-                                    <div style="margin-top:30px;">
-                                        {{-- <h5 style="font-size: 16px; font-weight: bold;">Dificulty:
-                                            <span>{{ $review->difficulty }}</span></h5> --}}
-                                        <h5 style="font-size: 16px; font-weight: bold;">Our Time:
-                                            <span>{{ $review->time }}</span></h5>
-                                        @if ($review->accessibility)
-                                        <h5 style="font-size: 16px; font-weight: bold;">Accessibility: <span
-                                                style="font-size: 14px; font-weight: 500;">{{ $review->accessibility }}</span>
-                                        </h5>
-                                        @endif
-                                        <h5 style="font-size: 16px; font-weight: bold;">Value: <span
-                                                style="font-size: 14px; font-weight: 500;">{{ $review->value }}</span>
-                                        </h5>
-                                        <h5 style="font-size: 16px; font-weight: bold;">Ideal for: <span
-                                                style="font-size: 14px; font-weight: 500;">{{ $review->ideal_for }}</span>
-                                        </h5>
-
-                                    </div>
-                                    <div class="good_for mb-3 mt-4">
-                                        @if ($review->good_for_kids)
-                                        <a href="{{ route('guest.find', ['good_for_kids' => 1]) }}">
-                                            <span class="btn"
-                                                style=" border-radius: 0px; background-color: #d25540;border:none;">Good
-                                                for
-                                                Kids</span>
-                                        </a>
-                                        @endif
-                                        @if ($review->good_for_enthusiasts)
-                                        <a href="{{ route('guest.find', ['good_for_enthusiasts' => 1]) }}">
-                                            <span class="btn"
-                                                style=" border-radius: 0px; background-color: #d25540;border:none;">Good
-                                                for
-                                                Enthusiasts</span>
-                                        </a>
-                                        @endif
-                                        @if ($review->good_for_design)
-                                        <a href="{{ route('guest.find', ['good_for_design' => 1]) }}">
-                                            <span class="btn"
-                                                style=" border-radius: 0px; background-color: #d25540;border:none;">Good
-                                                for
-                                                Design</span>
-                                        </a>
-                                        @endif
-                                        @if ($review->good_for_technology)
-                                        <a href="{{ route('guest.find', ['good_for_technology' => 1]) }}">
-                                            <span class="btn"
-                                                style=" border-radius: 0px; background-color: #d25540;border:none;">Good
-                                                for
-                                                Technology</span>
-                                        </a>
-                                        @endif
+                                <div class="row">
+                                    <div class="w-100 float-left mb-4" style="margin-left: 5px;">
+                                        <div style="margin-top:30px;">
+                                            {{-- <h5 style="font-size: 16px; font-weight: bold;">Dificulty:
+                                                <span>{{ $review->difficulty }}</span></h5> --}}
+                                            <h5 style="font-size: 16px; font-weight: bold;">Our Time:
+                                                <span>{{ $review->time }}</span></h5>
+                                            @if ($review->accessibility)
+                                            <h5 style="font-size: 16px; font-weight: bold;">Accessibility: <span
+                                                    style="font-size: 14px; font-weight: 500;">{{ $review->accessibility }}</span>
+                                            </h5>
+                                            @endif
+                                            <h5 style="font-size: 16px; font-weight: bold;">Value: <span
+                                                    style="font-size: 14px; font-weight: 500;">{{ $review->value }}</span>
+                                            </h5>
+                                            <h5 style="font-size: 16px; font-weight: bold;">Ideal for: <span
+                                                    style="font-size: 14px; font-weight: 500;">{{ $review->ideal_for }}</span>
+                                            </h5>
+    
+                                        </div>
+                                        <div class="good_for mb-3 mt-4">
+                                            @if ($review->good_for_kids)
+                                            <a href="{{ route('guest.find', ['good_for_kids' => 1]) }}">
+                                                <span class="btn"
+                                                    style=" border-radius: 0px; background-color: #d25540;border:none;">Good
+                                                    for
+                                                    Kids</span>
+                                            </a>
+                                            @endif
+                                            @if ($review->good_for_enthusiasts)
+                                            <a href="{{ route('guest.find', ['good_for_enthusiasts' => 1]) }}">
+                                                <span class="btn"
+                                                    style=" border-radius: 0px; background-color: #d25540;border:none;">Good
+                                                    for
+                                                    Enthusiasts</span>
+                                            </a>
+                                            @endif
+                                            @if ($review->good_for_design)
+                                            <a href="{{ route('guest.find', ['good_for_design' => 1]) }}">
+                                                <span class="btn"
+                                                    style=" border-radius: 0px; background-color: #d25540;border:none;">Good
+                                                    for
+                                                    Design</span>
+                                            </a>
+                                            @endif
+                                            @if ($review->good_for_technology)
+                                            <a href="{{ route('guest.find', ['good_for_technology' => 1]) }}">
+                                                <span class="btn"
+                                                    style=" border-radius: 0px; background-color: #d25540;border:none;">Good
+                                                    for
+                                                    Technology</span>
+                                            </a>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                             </div>

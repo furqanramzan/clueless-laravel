@@ -92,7 +92,6 @@ nav {
   padding: 0;
   background-color: rgba(128, 128, 128, 0.322);
   /* margin:-10px */
-  height: 80px;
   text-align: center !important;
 }
 
@@ -944,26 +943,37 @@ textarea {
 }
 
 @media only screen and (max-width: 992px) {
-  .nav-link{
+  .nav-link {
     color: #d25540 !important;
+  }
+  .nav-link:hover {
+    color: white !important;
+  }
+  .navbar ul>li:hover {
+    color: white !important;
+  }
+  .dropdown-menu a:hover {
+    color: white;
   }
 }
 
 .good_for {
   display: flex;
 }
-.good_for a{
+
+.good_for a {
   margin-right: 20px;
 }
+
 @media only screen and (max-width: 650px) {
-  .good_for{
+  .good_for {
     flex-direction: column;
   }
-  .good_for a{
+  .good_for a {
     margin-right: 0px;
     margin-bottom: 10px;
   }
-  .good_for a span{
+  .good_for a span {
     width: 185px;
   }
 }

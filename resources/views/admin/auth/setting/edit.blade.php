@@ -1,5 +1,5 @@
 @extends('admin.layout.auth')
-@section('contact', 'active')
+@section($item->key, 'active')
 
 @push('header')
 <link href="/assets/css/summernote-bs4.min.css" rel="stylesheet">

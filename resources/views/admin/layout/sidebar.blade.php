@@ -30,9 +30,15 @@
                 <i class="mdi mdi-format-vertical-align-center menu-icon"></i>
             </a>
         </li>
-        <li class="nav-item @yield('contact')">
-            <a class="nav-link" href="{{ route('admin.contact.edit', $contact->id) }}">
+        <li class="nav-item @yield('contact_us')">
+            <a class="nav-link" href="{{ route('admin.setting.edit', $contact->id) }}">
                 <span class="menu-title">Edit Contact Us</span>
+                <i class="mdi mdi-pencil menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item @yield('footer')">
+            <a class="nav-link" href="{{ route('admin.setting.edit', $footer->id) }}">
+                <span class="menu-title">Edit Footer</span>
                 <i class="mdi mdi-pencil menu-icon"></i>
             </a>
         </li>

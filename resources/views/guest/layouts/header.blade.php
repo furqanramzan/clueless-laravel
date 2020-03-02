@@ -17,7 +17,7 @@
                     <li class="nav-item dropdown @yield('toplist')">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
-                            TOP LIST <i class="fa fa-angle-down"></i>
+                            TOP LISTS <i class="fa fa-angle-down"></i>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             @foreach ($toplists as $toplist)

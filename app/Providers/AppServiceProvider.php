@@ -33,7 +33,8 @@ class AppServiceProvider extends ServiceProvider
 
         \View::composer(['admin.layout.sidebar'], function($view){
             $contact = \App\Models\Setting::where('key', 'contact_us')->select('id')->first();
-            $view->with(['contact' => $contact]);
+            $footer = \App\Models\Setting::where('key', 'footer')->select('id')->first();
+            $view->with(['contact' => $contact, 'footer' => $footer]);
         });
     }
 }
