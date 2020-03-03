@@ -115,6 +115,18 @@ nav {
   width: 20%;
 }
 
+@media only screen and (max-width: 550px) {
+  .review-detail{
+    flex-direction: column;
+  }
+  .review-detail .cname {
+    width: 100%;
+  }
+  .review-detail .rating {
+    width: 100%;
+  }
+}
+
 .rating h1 {
   font-weight: 1000;
   font-size: 70px;
@@ -783,6 +795,24 @@ textarea {
   /* border:2px solid red; */
 }
 
+.most-read .cname {
+  padding-left: 10px;
+  /* border:2px solid red; */
+}
+
+@media only screen and (max-width: 550px) {
+  .most-read {
+    flex-direction: column;
+  }
+  .most-read img {
+    margin-bottom: 5px;
+  }
+  .most-read .cname {
+    padding-left: 0px;
+    /* border:2px solid red; */
+  }
+}
+
 .btn:hover {
   color: #ffffff;
 }
@@ -977,7 +1007,8 @@ textarea {
     width: 185px;
   }
 }
-.progress-bar{
+
+.progress-bar {
   transition: width 1s;
   width: 0%;
 }
