@@ -1,9 +1,9 @@
 <header id="header" class="fixed-top">
     <div style="width:100%; height:10px; background-color:#ce8579;"></div>
-    <div class="container-fluid">
+    <div class="container-fluid nav-container">
         <nav class="navbar navbar-expand-lg ">
             <a class="navbar-brand" href="{{ route('guest.index') }}" style="font-size:30px;"><img
-                    src="/assets/images/logo.png" style="width: 270px; height: 60px;"></a>
+                    src="/assets/images/logo.png" class="logo-img"></a>
             <button class="navbar-toggler justify-content-center" type="button" data-toggle="collapse"
                 data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                 aria-label="Toggle navigation">

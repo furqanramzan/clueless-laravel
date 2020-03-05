@@ -19,7 +19,6 @@ $factory->define(Review::class, function (Faker $faker) {
         "games_mastery" => $faker->numberBetween(0, 10),
         "innovation_tech" => $faker->numberBetween(0, 10),
         "overall" => $faker->numberBetween(0, 10),
-        "difficulty" => $faker->numberBetween(0, 5) . ' / ' . $faker->numberBetween(0, 5),
         "time" => '34:34  (60 min room)',
         "length" => $faker->text($maxNbChars = 50),
         "accessibility" => $faker->text($maxNbChars = 50),

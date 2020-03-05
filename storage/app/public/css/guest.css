@@ -116,7 +116,7 @@ nav {
 }
 
 @media only screen and (max-width: 550px) {
-  .review-detail{
+  .review-detail {
     flex-direction: column;
   }
   .review-detail .cname {
@@ -957,10 +957,28 @@ textarea {
   margin-right: 0;
 }
 
-@media only screen and (max-width: 345px) {
+@media only screen and (max-width: 390px) {
   .navbar {
     padding-right: 0;
     padding-left: 0;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .nav-container {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+.logo-img {
+  width: 270px;
+  height: 60px;
+}
+
+@media only screen and (max-width: 330px) {
+  .logo-img {
+    width: 230px;
   }
 }
 
@@ -1014,9 +1032,10 @@ textarea {
   width: 0%;
 }
 
-.dropdown-toggle::after{
+.dropdown-toggle::after {
   content: none;
 }
+
 /* select {
     width: 268px;
     padding: 5px;

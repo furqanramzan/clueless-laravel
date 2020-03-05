@@ -31,7 +31,7 @@ class GuestController extends Controller
 
     public function toplist($id)
     {
-        $toplist = $this->toplist->with(['toplistreview' => function($query){
+        $toplist = $this->toplist->with(['toplistreview' => function ($query) {
             $query->with('review')->limit(10)->orderBy('order', 'desc');
         }])->findorFail($id);
         return view('guest.toplist', compact('toplist'));
@@ -103,7 +103,7 @@ class GuestController extends Controller
         if (isset($data['params']['price']) && $data['params']['price']) {
             $price = explode(',', $data['params']['price']);
             if (isset($price[0]) && isset($price[1])) {
-                $reviews = $reviews->where(function($query) use ($price) {
+                $reviews = $reviews->where(function ($query) use ($price) {
                     $query->orWhere('average_price', '>=', (int) $price[0])->where('average_price', '<=', (int) $price[1]);
                 });
             } else {
@@ -145,7 +145,11 @@ class GuestController extends Controller
             'max' => $this->review->published()->max('average_price')
         ];
 
-        return view('guest.find', compact('data'));
+        if ($request->ajax) {
+            return view('guest.layouts.find_list', compact('data'));
+        } else {
+            return view('guest.find', compact('data'));
+        }
     }
 
     public function review($id)

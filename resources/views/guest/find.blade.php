@@ -42,7 +42,9 @@
         step: 1,
         isRange : true,
         width: 145,
-        showScale: false
+        showScale: false,
+        ondragend: submitForm,
+        onbarclicked: submitForm
     });
     $('#players').jRange({
         from: {{ $data['players']['min'] }},
@@ -50,7 +52,9 @@
         step: 1,
         isRange : true,
         width: 145,
-        showScale: false
+        showScale: false,
+        ondragend: submitForm,
+        onbarclicked: submitForm
     });
     $('#price').jRange({
         from: {{ $data['price']['min'] }},
@@ -58,7 +62,9 @@
         step: 1,
         isRange : true,
         width: 145,
-        showScale: false
+        showScale: false,
+        ondragend: submitForm,
+        onbarclicked: submitForm
     });
     window.regions = @json($data['regions']);
     function countryChanged() {
@@ -75,7 +81,51 @@
                 }));
             });
         }
+        $("form").submit();
     }
+
+    function submitForm() {
+        $("form").submit();
+    }
+
+    $("#jump").click(function() {
+        submitForm();
+    });
+
+    var typingTimer;                //timer identifier
+    var doneTypingInterval = 2000;  //time in ms, 5 second for example
+    var $input = $('#keyword');
+
+    //on keyup, start the countdown
+    $input.on('keyup', function () {
+    clearTimeout(typingTimer);
+    typingTimer = setTimeout(submitForm, doneTypingInterval);
+    });
+
+    //on keydown, clear the countdown 
+    $input.on('keydown', function () {
+    clearTimeout(typingTimer);
+    });
+
+    $("form").submit(function (event) {
+        event.preventDefault();
+        var inputs = {};
+        $.each($('form').serializeArray(), function (i, field) {
+            inputs[field.name] = field.value;
+        });
+        inputs['ajax'] = true;
+
+
+        $.get("/find", inputs,
+            function (data, status) {
+                if (status === 'success') {
+                    $("#find_list").html(data);
+                    $(':input[type="submit"]').prop('disabled', false);
+                } else {
+                    alert('An error occured. Please refresh page and try again');
+                }
+            });
+    });
 </script>
 @endpush
 
@@ -91,7 +141,7 @@
                     <div class="row mb-3">
                         <div class="col-md-4 col-sm-12 px-0 d-flex justify-content-between align-items-center">
                             <h4 class="font-weight-bold mb-0">Keyword Search:</h4>
-                            <input type="search" name="keyword" value="{{ $data['params']['keyword'] }}"
+                            <input type="search" name="keyword" id="keyword" value="{{ $data['params']['keyword'] }}"
                                 style="border:2px solid #000000; width: 220px; height: 30px;">
                         </div>
                     </div>
@@ -110,7 +160,7 @@
                     <div class="row mb-1">
                         <div class="col-md-4 col-sm-12 px-0 d-flex justify-content-between align-items-center">
                             <h5 class="mb-0">Region</h5>
-                            <select name="region" style="width: 145px;" id="regions">
+                            <select name="region" style="width: 145px;" id="regions" onchange="submitForm()">
                                 <option value="">All</option>
                             </select>
                         </div>
@@ -141,18 +191,10 @@
                             <h5 class="mb-0">Jump Scares</h5>
                             <div style="width: 145px;">
                                 <label class="checkboxcontainer">
-                                    <input type="checkbox" name="jump" value="1"
+                                    <input type="checkbox" name="jump" id="jump" value="1"
                                         {{ $data['params']['jump'] ? 'checked' : '' }}>
                                     <span class="checkmark"></span>
                                 </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-1 mt-2">
-                        <div class="col-md-4 col-sm-12 px-0 d-flex justify-content-end">
-                            <div style="width: 145px;">
-                                <button type="submit" class="btn"
-                                    style="background-color: #d25540;border:none;">Search</a>
                             </div>
                         </div>
                     </div>
@@ -160,40 +202,9 @@
             </form>
 
             <hr style="background-color: #A1A1A1; height: 1px; width: 100% !important;">
-            @foreach ($data['reviews'] as $chunk)
-            <div class="row">
-                @foreach ($chunk as $review)
-                <div class="col-xl-4 col-lg-4 mt-4">
-                    <div class="card h-100">
-                        <a style="color: black; text-decoration: none;" href="{{ route('guest.review', $review->id) }}">
-                            <div class="view overlay">
-                                <img class="card-img-top" width="300" style="height: auto;" src="{{ $review->image }}">
-                            </div>
-                            <div class="card-body">
-                                <div class="main">
-                                    <div class="cname">
-                                        <div>
-                                            <h4>{{ $review->company_name }}</h4>
-                                        </div>
-                                        <div>
-                                            <h4 class="mb-0">{{ $review->room_name }}</h4>
-                                        </div>
-                                        <div>
-                                            <h6>{{ $review->country }}, <span>{{ $review->region }}</span> </h6>
-                                        </div>
-                                    </div>
-                                    <div class="rating">
-                                        <h1>{{ $review->overall }}</h1>
-                                    </div>
-                                </div>
-                                <p class="card-text">{{ $review->room_overview }}</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                @endforeach
+            <div id="find_list">
+                @include('guest.layouts.find_list')
             </div>
-            @endforeach
         </div>
     </div>
 </div>
