@@ -154,7 +154,7 @@
                     <div class="card h-100">
                         <a style="color: black; text-decoration: none;" href="{{ route('guest.review', $review->id) }}">
                             <div class="view overlay">
-                                <img class="card-img-top" width="300" height="200" src="{{ $review->image }}">
+                                <img class="card-img-top" width="300" style="height: auto;" src="{{ $review->image }}">
                             </div>
                             <div class="card-body">
                                 <div class="main">

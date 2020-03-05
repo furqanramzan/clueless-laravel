@@ -113,7 +113,7 @@ $(document).ready(function () {
         <div style="margin-top:91px; min-height: calc(100vh - 300px); width: 100%; float: left;">
             <div class="w-100 float-left">
                 <img src="{{ $review->detail_image ? asset($review->detail_image) : asset($review->image) }}"
-                    style="width: 100%; float: left; height: 300px">
+                    style="width: 100%; float: left; height: auto;">
             </div>
             <div class="w-100 float-left mt-5">
                 <div class="container-fluid px-5">

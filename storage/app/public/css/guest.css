@@ -937,7 +937,8 @@ textarea {
 }
 
 .nav-link {
-  padding: 10px 15px !important;
+  padding: 20px !important;
+  line-height: 15px;
 }
 
 .dropdown-toggle::after {
