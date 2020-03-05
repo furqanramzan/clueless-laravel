@@ -45,21 +45,37 @@
         showScale: false
     });
     $('#players').jRange({
-        from: 0,
-        to: 1000,
+        from: {{ $data['players']['min'] }},
+        to: {{ $data['players']['max'] }},
         step: 1,
         isRange : true,
         width: 145,
         showScale: false
     });
     $('#price').jRange({
-        from: 0,
-        to: 1000,
+        from: {{ $data['price']['min'] }},
+        to: {{ $data['price']['max'] }},
         step: 1,
         isRange : true,
         width: 145,
         showScale: false
     });
+    window.regions = @json($data['regions']);
+    function countryChanged() {
+        let country = $("#countries option:selected").text();
+        $('#regions').empty().append($('<option>', { 
+            value: "",
+            text : "All"
+        }));
+        if(regions[country]) {
+            $.each(regions[country], function (i, item) {
+                $('#regions').append($('<option>', { 
+                    value: item.region,
+                    text : item.region
+                }));
+            });
+        }
+    }
 </script>
 @endpush
 
@@ -67,9 +83,9 @@
 <div class="container-fluid px-5">
     <div class="row">
         <div style="margin-top:100px; min-height: calc(100vh - 300px); width: 100%; float: left;">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 px-0">
-                    <h1 class="mt-2 font-weight-bold text-center">Find your next Escape Room </h1>
-                </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 px-0">
+                <h1 class="mt-2 font-weight-bold text-center">Find your next Escape Room </h1>
+            </div>
             <form action="{{ route('guest.find') }}" class="w-100">
                 <div class="col-sm-12">
                     <div class="row mb-3">
@@ -82,7 +98,7 @@
                     <div class="row mb-1">
                         <div class="col-md-4 col-sm-12 px-0 d-flex justify-content-between align-items-center">
                             <h5 class="mb-0">Country</h5>
-                            <select name="country" style="width: 145px;">
+                            <select name="country" style="width: 145px;" onchange="countryChanged()" id="countries">
                                 <option value="">All</option>
                                 @foreach ($data['countries'] as $country)
                                 <option @if($country->country == $data['params']['country']) selected @endif
@@ -94,12 +110,8 @@
                     <div class="row mb-1">
                         <div class="col-md-4 col-sm-12 px-0 d-flex justify-content-between align-items-center">
                             <h5 class="mb-0">Region</h5>
-                            <select name="region" style="width: 145px;">
+                            <select name="region" style="width: 145px;" id="regions">
                                 <option value="">All</option>
-                                @foreach ($data['regions'] as $region)
-                                <option @if($region->region == $data['params']['region']) selected @endif
-                                    value="{{ $region->region }}">{{ $region->region }}</option>
-                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -139,7 +151,8 @@
                     <div class="row mb-1 mt-2">
                         <div class="col-md-4 col-sm-12 px-0 d-flex justify-content-end">
                             <div style="width: 145px;">
-                                <button type="submit" class="btn" style="background-color: #d25540;border:none;">Search</a>
+                                <button type="submit" class="btn"
+                                    style="background-color: #d25540;border:none;">Search</a>
                             </div>
                         </div>
                     </div>
@@ -150,7 +163,7 @@
             @foreach ($data['reviews'] as $chunk)
             <div class="row">
                 @foreach ($chunk as $review)
-                <div class="col-xl-4 col-lg-4 col-md-4 mt-4">
+                <div class="col-xl-4 col-lg-4 mt-4">
                     <div class="card h-100">
                         <a style="color: black; text-decoration: none;" href="{{ route('guest.review', $review->id) }}">
                             <div class="view overlay">

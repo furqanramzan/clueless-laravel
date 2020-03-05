@@ -12,12 +12,12 @@
             <div class="collapse navbar-collapse " id="navbarNavDropdown">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item @yield('find')">
-                        <a class="nav-link" href="{{ route('guest.find') }}"><span style="letter-spacing: 2px;">FIND</span> A ROOM <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ route('guest.find') }}"><span style="letter-spacing: 2px;">FIND</span> A ROOM</a>
                     </li>
                     <li class="nav-item dropdown @yield('toplist')">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
-                            TOP LISTS <i class="fa fa-angle-down"></i>
+                            TOP LISTS <i class="fa fa-angle-down" style="line-height: 11px;"></i>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             @foreach ($toplists as $toplist)

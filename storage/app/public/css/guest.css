@@ -1014,6 +1014,9 @@ textarea {
   width: 0%;
 }
 
+.dropdown-toggle::after{
+  content: none;
+}
 /* select {
     width: 268px;
     padding: 5px;

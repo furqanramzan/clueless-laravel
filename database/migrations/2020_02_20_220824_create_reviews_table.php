@@ -39,9 +39,9 @@ class CreateReviewsTable extends Migration
             $table->boolean('jump_scares');
             $table->boolean('wheelchair');
             $table->boolean('is_closed');
-            $table->string('average_price');
-            $table->string('minimum_players');
-            $table->string('maximum_players');
+            $table->bigInteger('average_price');
+            $table->bigInteger('minimum_players');
+            $table->bigInteger('maximum_players');
             $table->string('image');
             $table->string('detail_image')->nullable();
             $table->bigInteger('visits')->default(0);

@@ -131,8 +131,20 @@ class GuestController extends Controller
         $reviews = $reviews->get();
         $reviews = $reviews->chunk(3);
         $data['reviews'] = $reviews;
+
+        // Search Data
         $data['countries'] = $this->review->published()->select('country')->orderBy('country')->distinct('country')->get();
-        $data['regions'] = $this->review->published()->select('region')->orderBy('region')->distinct('region')->get();
+        $data['regions'] = $this->review->published()->select('region', 'country')->orderBy('region')->distinct('region')->get();
+        $data['regions'] = $data['regions']->groupBy('country');
+        $data['players'] = [
+            'min' => $this->review->published()->min('minimum_players'),
+            'max' => $this->review->published()->max('maximum_players')
+        ];
+        $data['price'] = [
+            'min' => $this->review->published()->min('average_price'),
+            'max' => $this->review->published()->max('average_price')
+        ];
+
         return view('guest.find', compact('data'));
     }
 

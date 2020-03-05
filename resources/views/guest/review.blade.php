@@ -116,7 +116,7 @@ $(document).ready(function () {
                     style="width: 100%; float: left; height: auto;">
             </div>
             <div class="w-100 float-left mt-5">
-                <div class="container-fluid px-5">
+                <div class="container-fluid px-lg-5 px-3">
                     <div class="row">
                         <div class="col-xl-8 col-lg-8 col-md-12">
                             <div class="main review-detail">
