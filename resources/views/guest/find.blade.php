@@ -71,7 +71,7 @@
         let country = $("#countries option:selected").text();
         $('#regions').empty().append($('<option>', { 
             value: "",
-            text : "All"
+            text : "Select Region"
         }));
         if(regions[country]) {
             $.each(regions[country], function (i, item) {
@@ -109,6 +109,7 @@
 
     $("form").submit(function (event) {
         event.preventDefault();
+        $(':input[type="submit"]').prop('disabled', true);
         var inputs = {};
         $.each($('form').serializeArray(), function (i, field) {
             inputs[field.name] = field.value;
@@ -141,7 +142,7 @@
                     <div class="row mb-3">
                         <div class="col-md-4 col-sm-12 px-0 d-flex justify-content-between align-items-center">
                             <h4 class="font-weight-bold mb-0">Keyword Search:</h4>
-                            <input type="search" name="keyword" id="keyword" value="{{ $data['params']['keyword'] }}"
+                            <input type="text" name="keyword" id="keyword" value="{{ $data['params']['keyword'] }}"
                                 style="border:2px solid #000000; width: 220px; height: 30px;">
                         </div>
                     </div>
@@ -149,7 +150,7 @@
                         <div class="col-md-4 col-sm-12 px-0 d-flex justify-content-between align-items-center">
                             <h5 class="mb-0">Country</h5>
                             <select name="country" style="width: 145px;" onchange="countryChanged()" id="countries">
-                                <option value="">All</option>
+                                <option value="">Select Country</option>
                                 @foreach ($data['countries'] as $country)
                                 <option @if($country->country == $data['params']['country']) selected @endif
                                     value="{{ $country->country }}">{{ $country->country }}</option>
@@ -161,7 +162,7 @@
                         <div class="col-md-4 col-sm-12 px-0 d-flex justify-content-between align-items-center">
                             <h5 class="mb-0">Region</h5>
                             <select name="region" style="width: 145px;" id="regions" onchange="submitForm()">
-                                <option value="">All</option>
+                                <option value="">Select Region</option>
                             </select>
                         </div>
                     </div>
@@ -195,6 +196,14 @@
                                         {{ $data['params']['jump'] ? 'checked' : '' }}>
                                     <span class="checkmark"></span>
                                 </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-1 mt-2">
+                        <div class="col-md-4 col-sm-12 px-0 d-flex justify-content-end">
+                            <div style="width: 145px;">
+                                <button type="submit" class="btn"
+                                    style="background-color: #d25540;border:none;">Search</a>
                             </div>
                         </div>
                     </div>

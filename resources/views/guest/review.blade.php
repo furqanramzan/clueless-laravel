@@ -97,6 +97,8 @@ $(document).ready(function () {
                 if (status === 'success') {
                     var comment = '<div class="comment-wrap"><div class="comment-block"><h4 class="mb-0">'+data.name+'</h4><p class="comment-text">' + data.body + '     </p><div class="bottom-comment"><div class="comment-date float-right">' + data.date + '</div></div></div></div>';
                     $("#comments_list").prepend(comment);
+                    $("#name").val("");
+                    $("#body").val("");
                     $(':input[type="submit"]').prop('disabled', false);
                 } else {
                     alert('An error occured. Please refresh page and try again');
@@ -296,9 +298,9 @@ $(document).ready(function () {
                                             <form id="comment_form">
                                                 @csrf
                                                 <input type="hidden" name="review" value="{{ $review->id }}">
-                                                <input type="text" name="name" required placeholder="Your name"
+                                                <input id="name" type="text" name="name" required placeholder="Your name"
                                                     class="mb-2">
-                                                <textarea name="body" cols="30" rows="3" placeholder="Add comment..."
+                                                <textarea name="body" cols="30" rows="3" id="body" placeholder="Add comment..."
                                                     required></textarea>
                                                 <button type="submit" class="btn mt-2 "
                                                     style="background-color: #d25540;">Submit</button>
