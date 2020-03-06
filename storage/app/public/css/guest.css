@@ -115,6 +115,20 @@ nav {
   width: 20%;
 }
 
+@media only screen and (max-width: 500px) {
+  .main {
+    flex-direction: column;
+  }
+  .main .cname {
+    order: 2;
+    width: 100%;
+  }
+  .main .rating {
+    order: 1;
+    width: 100%;
+  }
+}
+
 @media only screen and (max-width: 550px) {
   .review-detail {
     flex-direction: column;
@@ -1034,6 +1048,27 @@ textarea {
 
 .dropdown-toggle::after {
   content: none;
+}
+
+@media only screen and (max-width: 992px) {
+  .toplist .main .cname {
+    width: 80%;
+  }
+  .toplist .main .rating {
+    width: 20%;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .toplist .main .cname {
+    width: 100%;
+  }
+  .toplist .main .rating {
+    width: 100%;
+  }
+  .toplist .main .rating h1 {
+    float: right;
+  }
 }
 
 /* select {
