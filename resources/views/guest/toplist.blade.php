@@ -2,8 +2,8 @@
 @section('toplist', 'nav-item-active')
 
 @section('content')
-<div class="container-fluid px-5">
-    <div class="row">
+<div class="container-fluid px-lg-5 px-3">
+    <div class="w-100 float-left">
         <div style="margin-top:100px; min-height: calc(100vh - 300px); width: 100%; float: left;">
             <div class="container">
                 <h1 class="mt-2 font-weight-bold text-center">{{ $toplist->title }}</h1>

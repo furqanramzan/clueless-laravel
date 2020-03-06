@@ -1,8 +1,8 @@
 @extends('guest.layouts.app')
 
 @section('content')
-<div class="container-fluid px-5">
-    <div class="row">
+<div class="container-fluid px-lg-5 px-3">
+    <div class="w-100 float-left">
         <div style="margin-top:100px; min-height: calc(100vh - 100px); width: 100%; float: left;">
             @foreach ($data['reviews'] as $chunk)
             <div class="row">
