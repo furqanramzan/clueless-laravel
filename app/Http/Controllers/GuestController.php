@@ -49,7 +49,8 @@ class GuestController extends Controller
         ];
         $params = $request->only('keyword', 'country', 'region', 'rating', 'players', 'price', 'jump', 'good_for_kids', 'good_for_enthusiasts', 'good_for_design', 'good_for_technology');
         $data['params'] = array_merge($data['params'], $params);
-        $reviews = $this->review->published()->latest()->limit(12);
+        
+        $reviews = $this->review->published()->orderBy('overall', 'desc')->latest();
 
         // Good For Filters
         if (isset($data['params']['good_for_kids']) && $data['params']['good_for_kids']) {

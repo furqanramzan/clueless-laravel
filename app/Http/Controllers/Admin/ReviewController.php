@@ -60,6 +60,8 @@ class ReviewController extends Controller
         $validated = $this->validateRequest($request);
         $validated = array_merge($validated, $request->validate([
             "image" => 'required|image'
+        ], [], [
+            'image' => 'thumbnail image',
         ]));
 
         $validated['image'] = $validated['image']->store('uploads/reviews', 'public_folder');
@@ -122,6 +124,8 @@ class ReviewController extends Controller
         $validated = $this->validateRequest($request);
         $validated = array_merge($validated, $request->validate([
             "image" => "nullable|image|exclude_if:image," . null,
+        ], [], [
+            'image' => 'thumbnail image',
         ]));
 
         $item = $this->model->findorFail($id);
@@ -223,6 +227,9 @@ class ReviewController extends Controller
             "average_price" => "required|numeric",
             "maximum_players" => "required|numeric",
             "minimum_players" => "required|numeric",
+        ], [], [
+            'detail_image' => 'banner image',
+            'length' => 'game length',
         ]);
     }
 }

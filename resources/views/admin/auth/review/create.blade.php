@@ -23,6 +23,7 @@
 @endpush
 
 @section('content')
+{{-- {{ dd($errors) }} --}}
 <div class="content-wrapper">
     @include('admin.layout.page_header', ['pageRoute' => "$route.index", 'pageIcon' => 'keyboard-backspace', 'pageTitle'
     => "Add $title"])
@@ -141,9 +142,9 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="length" class="col-sm-3 col-form-label">Length</label>
+                            <label for="length" class="col-sm-3 col-form-label">Game Length</label>
                             <div class="col-sm-9">
-                                <input type="text" name="length" class="form-control" id="length" placeholder="Length"
+                                <input type="text" name="length" class="form-control" id="length" placeholder="Game Length"
                                     value="{{ old('length') }}">
                             </div>
                         </div>
@@ -197,12 +198,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Image</label>
+                            <label class="col-sm-3 col-form-label">Thumbnail Image</label>
                             <div class="col-sm-9">
                                 <input type="file" name="image" class="file-upload-default d-none">
                                 <div class="input-group">
                                     <input type="text" class="form-control file-upload-info" disabled
-                                        placeholder="Upload Image">
+                                        placeholder="Upload Thumbnail Image">
                                     <span class="input-group-append">
                                         <button class="file-upload-browse btn btn-gradient-primary"
                                             type="button">Upload</button>
@@ -212,12 +213,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Detail Image</label>
+                            <label class="col-sm-3 col-form-label">Banner Image</label>
                             <div class="col-sm-9">
                                 <input type="file" name="detail_image" class="file-upload-default d-none">
                                 <div class="input-group">
                                     <input type="text" class="form-control file-upload-info" disabled
-                                        placeholder="Upload Detail Image">
+                                        placeholder="Upload Banner Image">
                                     <span class="input-group-append">
                                         <button class="file-upload-browse btn btn-gradient-primary"
                                             type="button">Upload</button>

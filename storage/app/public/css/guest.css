@@ -106,13 +106,13 @@ nav {
 }
 
 .cname {
-  width: 80%;
+  width: 74%;
 }
 
 .rating {
   color: #ce8579;
-  padding-right: 20px;
-  width: 20%;
+  padding-right: 10px;
+  width: 26%;
 }
 
 @media only screen and (max-width: 500px) {
@@ -120,12 +120,13 @@ nav {
     flex-direction: column;
   }
   .main .cname {
-    order: 2;
     width: 100%;
   }
   .main .rating {
-    order: 1;
     width: 100%;
+  }
+  .main .rating h1 {
+    float: left;
   }
 }
 
@@ -811,7 +812,23 @@ textarea {
 
 .most-read .cname {
   padding-left: 10px;
-  /* border:2px solid red; */
+  width: 77%;
+}
+
+.most-read .rating1 {
+  width: 23%;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1250px) {
+  .most-read {
+    flex-direction: column;
+  }
+  .most-read img {
+    margin-bottom: 5px;
+  }
+  .most-read .cname {
+    padding-left: 0px;
+  }
 }
 
 @media only screen and (max-width: 550px) {
@@ -824,6 +841,12 @@ textarea {
   .most-read .cname {
     padding-left: 0px;
     /* border:2px solid red; */
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .most-read .mostread {
+    flex-direction: row;
   }
 }
 
@@ -1065,9 +1088,6 @@ textarea {
   }
   .toplist .main .rating {
     width: 100%;
-  }
-  .toplist .main .rating h1 {
-    float: right;
   }
 }
 

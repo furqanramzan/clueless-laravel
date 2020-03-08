@@ -19,16 +19,16 @@
         border: 1px solid black;
         background-color: white;
         background-image: none;
-        width: 9px;
-        height: 9px;
-        top: -3px;
+        width: 12px;
+        height: 12px;
+        top: -4px;
     }
 
     .theme-green .back-bar .pointer-label {
         color: black;
         font-weight: bold;
-        top: -14px;
-        font-size: 9px;
+        top: -16px;
+        font-size: 11px;
     }
 </style>
 @endpush
@@ -62,6 +62,7 @@
         step: 1,
         isRange : true,
         width: 145,
+        format: '£%s',
         showScale: false,
         ondragend: submitForm,
         onbarclicked: submitForm
@@ -69,10 +70,17 @@
     window.regions = @json($data['regions']);
     function countryChanged() {
         let country = $("#countries option:selected").text();
-        $('#regions').empty().append($('<option>', { 
-            value: "",
-            text : "Select Region"
-        }));
+        if(country !== 'All'){
+            $('#regions').empty().append($('<option>', { 
+                value: "",
+                text : "All"
+            }));
+        } else {
+            $('#regions').empty().append($('<option>', { 
+                value: "",
+                text : "Select Country"
+            }));
+        }
         if(regions[country]) {
             $.each(regions[country], function (i, item) {
                 $('#regions').append($('<option>', { 
@@ -150,7 +158,7 @@
                         <div class="col-md-4 col-sm-12 px-0 d-flex justify-content-between align-items-center">
                             <h5 class="mb-0">Country</h5>
                             <select name="country" style="width: 145px;" onchange="countryChanged()" id="countries">
-                                <option value="">Select Country</option>
+                                <option value="">All</option>
                                 @foreach ($data['countries'] as $country)
                                 <option @if($country->country == $data['params']['country']) selected @endif
                                     value="{{ $country->country }}">{{ $country->country }}</option>
@@ -162,12 +170,12 @@
                         <div class="col-md-4 col-sm-12 px-0 d-flex justify-content-between align-items-center">
                             <h5 class="mb-0">Region</h5>
                             <select name="region" style="width: 145px;" id="regions" onchange="submitForm()">
-                                <option value="">Select Region</option>
+                                <option value="">Select Country</option>
                             </select>
                         </div>
                     </div>
                     <div class="row mb-1">
-                        <div class="col-md-4 col-sm-12 px-0 d-flex justify-content-between align-items-center">
+                        <div class="col-md-4 col-sm-12 px-0 d-flex justify-content-between align-items-center mt-1">
                             <h5 class="mb-0">Rating</h5>
                             <input name="rating" id="rating" class="range-slider" type="hidden"
                                 value="{{ $data['params']['rating'] }}" />

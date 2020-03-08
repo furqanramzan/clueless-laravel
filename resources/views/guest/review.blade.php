@@ -117,7 +117,7 @@ $(document).ready(function () {
                 <img src="{{ $review->detail_image ? asset($review->detail_image) : asset($review->image) }}"
                     style="width: 100%; float: left; height: auto;">
             </div>
-            <div class="w-100 float-left mt-5">
+            <div class="w-100 float-left mt-4">
                 <div class="container-fluid px-lg-5 px-3">
                     <div class="row">
                         <div class="col-xl-8 col-lg-8 col-md-12">
@@ -145,7 +145,7 @@ $(document).ready(function () {
                                     </h4>
                                     <h4 style="color:#DF8778; line-height: 20px;">
                                         <a style="text-decoration: none;color: #d25540;"
-                                            href="{{ $review->company_url }}" target="_blank">
+                                            href="\\{{ $review->company_url }}" target="_blank">
                                             {{ $review->company_url }}
                                         </a>
                                     </h4>
