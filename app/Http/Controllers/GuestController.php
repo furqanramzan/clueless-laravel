@@ -25,7 +25,7 @@ class GuestController extends Controller
     {
         $data = [];
         $data['reviews'] = $this->review->published()->latest()->limit(12)->get();
-        $data['reviews'] = $data['reviews']->chunk(3);
+        // $data['reviews'] = $data['reviews']->chunk(3);
         return view('guest.index', compact('data'));
     }
 
@@ -130,7 +130,7 @@ class GuestController extends Controller
         }
 
         $reviews = $reviews->get();
-        $reviews = $reviews->chunk(3);
+        // $reviews = $reviews->chunk(3);
         $data['reviews'] = $reviews;
 
         // Search Data

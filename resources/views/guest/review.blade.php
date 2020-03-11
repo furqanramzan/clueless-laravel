@@ -112,7 +112,7 @@ $(document).ready(function () {
 @section('content')
 <div class="container-fluid">
     <div class="row">
-        <div style="margin-top:91px; min-height: calc(100vh - 300px); width: 100%; float: left;">
+        <div class="main-content">
             <div class="w-100 float-left">
                 <img src="{{ $review->detail_image ? asset($review->detail_image) : asset($review->image) }}"
                     style="width: 100%; float: left; height: auto;">

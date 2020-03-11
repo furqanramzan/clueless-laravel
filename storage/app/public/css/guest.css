@@ -15,7 +15,11 @@ body {
 }
 
 .navbar {
-  height: 80px;
+  height: 100px;
+}
+
+.navbar-collapse {
+  margin-top: 15px;
 }
 
 .card {
@@ -71,7 +75,7 @@ nav {
 #header {
   position: fixed;
   width: 100vw;
-  height: 90px;
+  height: 115px;
   background-color: #fff;
   -webkit-transition: 0.2s;
   transition: 0.2s;
@@ -994,10 +998,34 @@ textarea {
   margin-right: 0;
 }
 
-@media only screen and (max-width: 390px) {
+@media only screen and (max-width: 1120px) {
   .navbar {
     padding-right: 0;
     padding-left: 0;
+  }
+}
+
+.main-content {
+  margin-top: 120px;
+  min-height: calc(100vh - 300px);
+  width: 100%;
+  float: left;
+}
+
+@media only screen and (max-width: 580px) {
+  .main-content {
+    margin-top: 175px;
+  }
+  #header {
+    height: 171px;
+  }
+  .navbar a {
+    width: 100%;
+    text-align: center;
+  }
+  .navbar-toggler {
+    display: inline-block;
+    margin: auto;
   }
 }
 
@@ -1009,8 +1037,8 @@ textarea {
 }
 
 .logo-img {
-  width: 270px;
-  height: 60px;
+  width: 500px;
+  height: 87px;
 }
 
 @media only screen and (max-width: 330px) {

@@ -3,11 +3,10 @@
 @section('content')
 <div class="container-fluid px-lg-5 px-3">
     <div class="w-100 float-left">
-        <div style="margin-top:100px; min-height: calc(100vh - 100px); width: 100%; float: left;">
-            @foreach ($data['reviews'] as $chunk)
+        <div class="main-content">
             <div class="row">
-                @foreach ($chunk as $review)
-                <div class="col-xl-4 col-lg-4 mt-4">
+                @foreach ($data['reviews'] as $review)
+                <div class="col-xl-4 col-lg-4 col-md-6 mt-4">
                     <div class="card mt-3 h-100">
                         <a style="color: black; text-decoration: none;" href="{{ route('guest.review', $review->id) }}">
                             <div class="view overlay">
@@ -37,7 +36,6 @@
                 </div>
                 @endforeach
             </div>
-            @endforeach
         </div>
     </div>
 </div>

@@ -1,8 +1,7 @@
 {{-- {{ dd($data['reviews']) }} --}}
-@foreach ($data['reviews'] as $chunk)
 <div class="row">
-    @foreach ($chunk as $review)
-    <div class="col-xl-4 col-lg-4 mt-4">
+    @foreach ($data['reviews'] as $review)
+    <div class="col-xl-4 col-lg-4 col-md-6 mt-4">
         <div class="card h-100">
             <a style="color: black; text-decoration: none;" href="{{ route('guest.review', $review->id) }}">
                 <div class="view overlay">
@@ -32,4 +31,3 @@
     </div>
     @endforeach
 </div>
-@endforeach

@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="container-fluid px-lg-5 px-3">
-    <div style="margin-top:100px; min-height: calc(100vh - 250px); width: 100%; float: left;">
+    <div class="main-content">
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="mt-2 font-weight-bold text-center">Contact Us</h1>
