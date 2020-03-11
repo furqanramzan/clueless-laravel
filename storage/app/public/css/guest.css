@@ -119,6 +119,15 @@ nav {
   width: 26%;
 }
 
+@media only screen and (min-width: 992px) and (max-width: 1100px) {
+  .cname {
+    width: 65%;
+  }
+  .rating {
+    width: 35%;
+  }
+}
+
 @media only screen and (max-width: 500px) {
   .main {
     flex-direction: column;
