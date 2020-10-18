@@ -23,6 +23,7 @@ class AdminController extends Controller
         $this->model = $model;
         $this->hash = $hash;
     }
+    
     /**
      * Display a listing of the resource.
      *

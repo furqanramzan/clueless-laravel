@@ -124,7 +124,7 @@ $(document).ready(function () {
                             <div class="main review-detail">
                                 <div class="cname">
                                     <h1 style="font-weight: bold; line-height: 40px; font-size: 45px;" class="mb-0">
-                                        <a style="text-decoration: none; color: black;"
+                                        <a style="text-decoration: none; color: black; font-size: 35px;"
                                             href="{{ route('guest.find', ['keyword'=>$review->company_name]) }}">
                                             {{ $review->company_name }}
                                         </a>
@@ -135,12 +135,12 @@ $(document).ready(function () {
                                             {{ $review->room_name }}
                                         </a>
                                     </h2>
-                                    <h4 style="line-height: 20px;" class="mb-2">
+                                    <h4 style="line-height: 20px;" class="mt-1 mb-2">
                                         <a class="review_detial_area"
-                                            href="{{ route('guest.find', ['country'=>$review->country]) }}">{{ $review->country }}</a>,
+                                            href="{{ route('guest.find', ['region'=>$review->region]) }}">{{ $review->region }}</a>,
                                         <a class="review_detial_area"
-                                            href="{{ route('guest.find', ['region'=>$review->region]) }}">
-                                            {{ $review->region }}
+                                            href="{{ route('guest.find', ['country'=>$review->country]) }}">
+                                            {{ $review->country }}
                                         </a>
                                     </h4>
                                     <h4 style="color:#DF8778; line-height: 20px;">
@@ -156,7 +156,7 @@ $(document).ready(function () {
                                     </h1>
                                 </div>
                             </div>
-                            <div class="w-100 float-left">
+                            <div class="w-100 float-left helvitica" style="font-size: 14px;">
                                 {!! $review->body !!}
                             </div>
                             <div class="summary mb-4 w-100 float-left"
@@ -239,18 +239,20 @@ $(document).ready(function () {
                                         <div style="margin-top:30px;">
                                             {{-- <h5 style="font-size: 16px; font-weight: bold;">Dificulty:
                                                 <span>{{ $review->difficulty }}</span></h5> --}}
-                                            <h5 style="font-size: 16px; font-weight: bold;">Our Time:
-                                                <span>{{ $review->time }}</span></h5>
+                                            <h5 style="font-size: 16px;"><span style="font-size: 16px; font-weight: bold">
+                                                Our Time:
+                                            </span>  
+                                                <span class="helvitica">{{ $review->time }}</span></h5>
                                             @if ($review->accessibility)
                                             <h5 style="font-size: 16px; font-weight: bold;">Accessibility: <span
-                                                    style="font-size: 14px; font-weight: 500;">{{ $review->accessibility }}</span>
+                                                    style="font-size: 14px; font-weight: 500;" class="helvitica">{{ $review->accessibility }}</span>
                                             </h5>
                                             @endif
                                             <h5 style="font-size: 16px; font-weight: bold;">Value: <span
-                                                    style="font-size: 14px; font-weight: 500;">{{ $review->value }}</span>
+                                                    style="font-size: 14px; font-weight: 500;" class="helvitica">{{ $review->value }}</span>
                                             </h5>
                                             <h5 style="font-size: 16px; font-weight: bold;">Ideal for: <span
-                                                    style="font-size: 14px; font-weight: 500;">{{ $review->ideal_for }}</span>
+                                                    style="font-size: 14px; font-weight: 500;" class="helvitica">{{ $review->ideal_for }}</span>
                                             </h5>
 
                                         </div>
@@ -330,7 +332,7 @@ $(document).ready(function () {
                             <div style="border: 4px solid #DBDBDB;padding: 0;">
                                 <h1 class="text-center mt-3 font-weight-bold">Most Read Reviews</h1>
                                 @foreach ($reviews as $item)
-                                <a href="{{ route('guest.review', $item->id) }}"
+                                <a href="{{ route('guest.review', $item->slug) }}"
                                     style="text-decoration: none; color: black;">
                                     <div class="most-read">
                                         <div>

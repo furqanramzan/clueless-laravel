@@ -1,6 +1,17 @@
 @extends('admin.layout.auth')
 @section('toplistreview', 'active')
 
+@push('footer')
+<script>
+    $("form").submit(function(event){
+        var confirmed = confirm("Are you sure to perform desired action?");
+        if(!confirmed) {
+            event.preventDefault();
+        }
+    });
+</script>
+@endpush
+
 @section('content')
 <div class="content-wrapper">
     @if (session('message'))

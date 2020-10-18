@@ -12,7 +12,7 @@ class Review extends Model
      * @var array
      */
     protected $fillable = [
-        'company_name', 'company_url', 'room_name', 'room_overview', 'body', 'country', 'region', 'puzzles_gameplay', 'design_and_theming', 'games_mastery', 'innovation_tech', 'overall', 'time', 'length', 'accessibility', 'value', 'ideal_for', 'good_for_kids', 'good_for_enthusiasts', 'good_for_design', 'good_for_technology', 'image', 'detail_image', 'visits', 'published', 'published_date', 'jump_scares', 'wheelchair', 'is_closed', 'average_price', 'minimum_players', 'maximum_players'
+        'slug', 'company_name', 'company_url', 'room_name', 'room_overview', 'body', 'country', 'region', 'puzzles_gameplay', 'design_and_theming', 'games_mastery', 'innovation_tech', 'overall', 'time', 'length', 'accessibility', 'value', 'ideal_for', 'good_for_kids', 'good_for_enthusiasts', 'good_for_design', 'good_for_technology', 'image', 'detail_image', 'visits', 'published', 'published_date', 'jump_scares', 'wheelchair', 'is_closed', 'average_price', 'minimum_players', 'maximum_players'
     ];
 
     /**

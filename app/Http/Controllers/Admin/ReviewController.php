@@ -59,12 +59,14 @@ class ReviewController extends Controller
     {
         $validated = $this->validateRequest($request);
         $validated = array_merge($validated, $request->validate([
+            "room_name" => "required||max:1000|unique:reviews",
             "image" => 'required|image'
         ], [], [
             'image' => 'thumbnail image',
         ]));
 
         $validated['image'] = $validated['image']->store('uploads/reviews', 'public_folder');
+        $validated['slug'] = \Str::slug($validated['room_name'], '-');
         if (isset($validated['detail_image'])) {
             $validated['detail_image'] = $validated['detail_image']->store('uploads/reviews', 'public_folder');
         }
@@ -123,6 +125,7 @@ class ReviewController extends Controller
     {
         $validated = $this->validateRequest($request);
         $validated = array_merge($validated, $request->validate([
+            "room_name" => "required||max:1000|unique:reviews,room_name," . $id,
             "image" => "nullable|image|exclude_if:image," . null,
         ], [], [
             'image' => 'thumbnail image',
@@ -130,6 +133,7 @@ class ReviewController extends Controller
 
         $item = $this->model->findorFail($id);
 
+        $validated['slug'] = \Str::slug($validated['room_name'], '-');
         if (isset($validated['image'])) {
             $validated['image'] = $validated['image']->store('uploads/reviews', 'public_folder');
             $this->storage->disk('public_folder')->delete($item->image);
@@ -198,23 +202,23 @@ class ReviewController extends Controller
     public function validateRequest($request)
     {
         return $request->validate([
-            "company_name" => "required|max:190",
+            "company_name" => "required|max:1000",
             "company_url" => "required",
-            "room_name" => "required|max:190",
+            "room_name" => "required|max:1000",
             "room_overview" => "required",
             "body" => "required",
-            "country" => "required|max:190",
-            "region" => "required|max:190",
+            "country" => "required|max:1000",
+            "region" => "required|max:1000",
             "puzzles_gameplay" => "required|numeric|max:10",
             "design_and_theming" => "required|numeric|max:10",
             "games_mastery" => "required|numeric|max:10",
             "innovation_tech" => "required|numeric|max:10",
             "overall" => "required|numeric|max:10",
-            "time" => "required|max:190",
-            "length" => "required|max:190",
-            "accessibility" => "nullable|max:190",
-            "value" => "required|max:190",
-            "ideal_for" => "required|max:190",
+            "time" => "required|max:1000",
+            "length" => "required|max:1000",
+            "accessibility" => "nullable|max:1000",
+            "value" => "required|max:1000",
+            "ideal_for" => "required|max:1000",
             "jump_scares" => "boolean",
             "wheelchair" => "boolean",
             "is_closed" => "boolean",

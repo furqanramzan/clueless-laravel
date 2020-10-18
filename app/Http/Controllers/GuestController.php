@@ -157,7 +157,7 @@ class GuestController extends Controller
     {
         $review = $this->review->published()->with(['reviewComments' => function ($query) {
             $query->select('review_id', 'name', 'body', 'created_at')->latest();
-        }])->findorFail($id);
+        }])->whereSlug($id)->firstorFail();
         $review->visits++;
         $review->save();
         $reviews = $this->review->published()->orderBy('visits', 'desc')->limit(5)->get();

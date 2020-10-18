@@ -7,7 +7,9 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="mt-2 font-weight-bold text-center">Contact Us</h1>
-                {!! config('settings.contact_us') !!}
+                <div class="w-100 float-left helvitica">
+                    {!! config('settings.contact_us') !!}
+                </div>
             </div>
         </div>
     </div>

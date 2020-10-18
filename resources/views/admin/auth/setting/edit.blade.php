@@ -14,7 +14,7 @@
             height: 100,
             toolbar: [
                 ['style', ['style']],
-                ['font', ['bold', 'underline', 'clear']],
+                ['font', ['bold', 'italic', 'underline', 'clear']],
                 ['para', ['ul', 'ol', 'paragraph']],
             ]
         });

@@ -15,6 +15,7 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('slug');
             $table->string('company_name');
             $table->longText('company_url');
             $table->string('room_name');
